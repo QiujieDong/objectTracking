@@ -19,17 +19,17 @@ function labels = gaussian_shaped_labels(sigma, sz)
 % 	labels = zeros(sz(1:2));  %labels for all shifted samples
 % 	labels(1,1) = magnitude;  %label for 0-shift (original sample)
 
-%è¿ç»­æ€§æ ‡ç­¾ï¼Œä½¿ç”¨å›å½’é—®é¢˜è§£å†³åˆ†ç±»é—®é¢˜ã€‚åœ¨å¸¦å®½sigmaä¹‹å†…å¤§äºé›¶(positive)ï¼Œå¸¦å®½ä¹‹å¤–ä¸ºé›¶(negative)	
+%Á¬ĞøĞÔ±êÇ©£¬Ê¹ÓÃ»Ø¹éÎÊÌâ½â¾ö·ÖÀàÎÊÌâ¡£ÔÚ´ø¿ísigmaÖ®ÄÚ´óÓÚÁã(positive)£¬´ø¿íÖ®ÍâÎªÁã(negative)	
 
 	%evaluate a Gaussian with the peak at the center element
-	[rs, cs] = ndgrid((1:sz(1)) - floor(sz(1)/2), (1:sz(2)) - floor(sz(2)/2));%ç›®æ ‡ä¸­å¿ƒä½ç½®åæ ‡ä¸º(0,0)
+	[rs, cs] = ndgrid((1:sz(1)) - floor(sz(1)/2), (1:sz(2)) - floor(sz(2)/2));%Ä¿±êÖĞĞÄÎ»ÖÃ×ø±êÎª(0,0)
 	labels = exp(-0.5 / sigma^2 * (rs.^2 + cs.^2));
 
 	%move the peak to the top-left, with wrap-around
-	labels = circshift(labels, -floor(sz(1:2) / 2) + 1);%å°†æœ€é«˜å€¼ç”±ä¸­å¿ƒä½ç½®ç§»åˆ°å››è§’ï¼Œå› ä¸ºMATLABçš„fft2ä¹‹åï¼Œå›¾åƒçš„èƒ½é‡ç”±ä¸­å¿ƒç§»åˆ°äº†å››è§’ã€‚è€Œæœ€å¤§å€¼å°†ä¼šç§»åˆ°å·¦ä¸Šè§’
-                                                        %è¿™é‡Œåšå¥½å¹³ç§»æ˜¯ä¸ºäº†åé¢å°†æ ·æœ¬ä¸è¿™é‡Œçš„æ ‡ç­¾ä¸€ä¸€å¯¹åº”
+	labels = circshift(labels, -floor(sz(1:2) / 2) + 1);%½«×î¸ßÖµÓÉÖĞĞÄÎ»ÖÃÒÆµ½ËÄ½Ç£¬ÒòÎªMATLABµÄfft2Ö®ºó£¬Í¼ÏñµÄÄÜÁ¿ÓÉÖĞĞÄÒÆµ½ÁËËÄ½Ç¡£¶ø×î´óÖµ½«»áÒÆµ½×óÉÏ½Ç
+                                                        %ÕâÀï×öºÃÆ½ÒÆÊÇÎªÁËºóÃæ½«Ñù±¾ÓëÕâÀïµÄ±êÇ©Ò»Ò»¶ÔÓ¦
 
-	%sanity(åˆç†çš„) check: make sure it's really at top-left
+	%sanity(ºÏÀíµÄ) check: make sure it's really at top-left
 	assert(labels(1,1) == 1)
 
 end

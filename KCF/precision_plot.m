@@ -16,7 +16,7 @@ function precisions = precision_plot(positions, ground_truth, title, show)
 	
 	precisions = zeros(max_threshold, 1);
 	
-	if size(positions,1) ~= size(ground_truth,1)%å°†ä¸¤ä¸ªå‘é‡å¯¹é½
+	if size(positions,1) ~= size(ground_truth,1)%½«Á½¸öÏòÁ¿¶ÔÆë
 % 		fprintf('%12s - Number of ground truth frames does not match number of tracked frames.\n', title)
 		
 		%just ignore any extra frames, in either results or ground truth
@@ -28,11 +28,11 @@ function precisions = precision_plot(positions, ground_truth, title, show)
 	%calculate distances to ground truth over all frames
 	distances = sqrt((positions(:,1) - ground_truth(:,1)).^2 + ...
 				 	 (positions(:,2) - ground_truth(:,2)).^2);
-	distances(isnan(distances)) = [];%å»é™¤æ— ç©·å¤§çš„distance
+	distances(isnan(distances)) = [];%È¥³ıÎŞÇî´óµÄdistance
 
 	%compute precisions
 	for p = 1:max_threshold
-		precisions(p) = nnz(distances <= p) / numel(distances);%nnz - éé›¶çŸ©é˜µå…ƒç´ çš„æ•°ç›®
+		precisions(p) = nnz(distances <= p) / numel(distances);%nnz - ·ÇÁã¾ØÕóÔªËØµÄÊıÄ¿
 	end
 	
 	%plot the precisions

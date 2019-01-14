@@ -16,10 +16,10 @@ function H = fhog( I, binSize, nOrients, clip, crop )
 % performance to the original HOG features. For details please refer to
 % work by Felzenszwalb et al. (see link above).
 
-%è®¡ç®—çš„HOGç‰¹å¾æ˜¯3 * nOrients + 5ç»´ã€‚æœ‰2 * nå¯¹æ¯”æ•æ„Ÿçš„å®šå‘é€šé“ï¼ŒnOientæˆå¯¹æ¯”
-% ä¸æ•æ„Ÿçš„å®šå‘é€šé“ï¼Œ4ä¸ªçº¹ç†é€šé“å’Œ1ä¸ªå…¨é›¶channelï¼ˆç”¨ä½œ'æˆªæ–­'åŠŸèƒ½ï¼‰ã€‚ä½¿ç”¨æ ‡å‡†å€¼
-% nOrients = 9åœ¨æ¯ä¸ªå•å…ƒæ ¼å¤„ç»™å‡º32ç»´ç‰¹å¾å‘é‡ã€‚è¿™ä¸ªHOGçš„å˜ä½“ï¼Œè¢«ç§°ä¸ºFHOGï¼Œå·²è¢«è¯æ˜å…·æœ‰ä¼˜è¶Šæ€§
-% åŸå§‹HOGåŠŸèƒ½çš„æ€§èƒ½ã€‚
+%¼ÆËãµÄHOGÌØÕ÷ÊÇ3 * nOrients + 5Î¬¡£ÓĞ2 * n¶Ô±ÈÃô¸ĞµÄ¶¨ÏòÍ¨µÀ£¬nOient³É¶Ô±È
+% ²»Ãô¸ĞµÄ¶¨ÏòÍ¨µÀ£¬4¸öÎÆÀíÍ¨µÀºÍ1¸öÈ«Áãchannel£¨ÓÃ×÷'½Ø¶Ï'¹¦ÄÜ£©¡£Ê¹ÓÃ±ê×¼Öµ
+% nOrients = 9ÔÚÃ¿¸öµ¥Ôª¸ñ´¦¸ø³ö32Î¬ÌØÕ÷ÏòÁ¿¡£Õâ¸öHOGµÄ±äÌå£¬±»³ÆÎªFHOG£¬ÒÑ±»Ö¤Ã÷¾ßÓĞÓÅÔ½ĞÔ
+% Ô­Ê¼HOG¹¦ÄÜµÄĞÔÄÜ¡£
 
 % This function is essentially a wrapper for calls to gradientMag()
 % and gradientHist(). Specifically, it is equivalent to the following:

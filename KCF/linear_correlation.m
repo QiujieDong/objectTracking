@@ -9,7 +9,7 @@ function kf = linear_correlation(xf, yf)
 %
 %   Joao F. Henriques, 2014
 %   http://www.isr.uc.pt/~henriques/
-%çº¿æ€§æ ¸	
+%ÏßÐÔºË	
 	%cross-correlation term in Fourier domain
 	kf = sum(xf .* conj(yf), 3) / numel(xf);
 

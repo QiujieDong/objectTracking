@@ -1,7 +1,7 @@
 function [fig_handle, axes_handle, scroll_bar_handles, scroll_func] = ...
 	videofig(num_frames, redraw_func, play_fps, big_scroll, ...
 	key_func, varargin)
-%VIDEOFIG Figure with horizontal scrollbar and play capabilities.(VIDEOFIGå¸¦æ°´å¹³æ»šåŠ¨æ¡å’Œæ’­æ”¾åŠŸèƒ½çš„å›¾ã€‚)
+%VIDEOFIG Figure with horizontal scrollbar and play capabilities.(VIDEOFIG´øË®Æ½¹ö¶¯ÌõºÍ²¥·Å¹¦ÄÜµÄÍ¼¡£)
 %   VIDEOFIG(NUM_FRAMES, @REDRAW_FUNC
 %   Creates a figure with a horizontal scrollbar and shortcuts to scroll
 %   automatically. The scroll range is 1 to NUM_FRAMES. The function
@@ -17,12 +17,12 @@ function [fig_handle, axes_handle, scroll_bar_handles, scroll_func] = ...
 %     Page down/page up -- advance/go back 30 frames.
 %     Home/end -- go to first/last frame of video.
 %
-%é”®ç›˜å¿«æ·é”®æ˜¯ï¼š
-%è¾“å…¥ï¼ˆè¿”å›ï¼‰ - æ’­æ”¾/æš‚åœè§†é¢‘ï¼ˆé»˜è®¤ä¸º25å¸§/ç§’ï¼‰ã€‚
-%é€€æ ¼ - æ’­æ”¾/æš‚åœè§†é¢‘æ…¢5å€ã€‚
-%å‘å³/å‘å·¦ç®­å¤´é”® - å‰è¿›/åé€€ä¸€å¸§ã€‚
-%å‘ä¸‹ç¿»é¡µ/å‘ä¸Šç¿»é¡µ - æå‰/è¿”å›30å¸§ã€‚
-%Home / end  - è½¬åˆ°è§†é¢‘çš„ç¬¬ä¸€å¸§/æœ€åä¸€å¸§ã€‚
+%¼üÅÌ¿ì½İ¼üÊÇ£º
+%ÊäÈë£¨·µ»Ø£© - ²¥·Å/ÔİÍ£ÊÓÆµ£¨Ä¬ÈÏÎª25Ö¡/Ãë£©¡£
+%ÍË¸ñ - ²¥·Å/ÔİÍ£ÊÓÆµÂı5±¶¡£
+%ÏòÓÒ/Ïò×ó¼ıÍ·¼ü - Ç°½ø/ºóÍËÒ»Ö¡¡£
+%ÏòÏÂ·­Ò³/ÏòÉÏ·­Ò³ - ÌáÇ°/·µ»Ø30Ö¡¡£
+%Home / end  - ×ªµ½ÊÓÆµµÄµÚÒ»Ö¡/×îºóÒ»Ö¡¡£
 %
 %   Advanced usage
 %   --------------
@@ -71,11 +71,11 @@ function [fig_handle, axes_handle, scroll_bar_handles, scroll_func] = ...
 %         hold off
 %     end
 %
-%   Joï¿½o Filipe Henriques, 2010
+%   Jo?o Filipe Henriques, 2010
 	
 	%default parameter values
 	if nargin < 3 || isempty(play_fps), play_fps = 25; end  %play speed (frames per second)
-	if nargin < 4 || isempty(big_scroll), big_scroll = 30; end  %page-up and page-down advance, in frames(å‘ä¸Šç¿»é¡µå’Œå‘ä¸‹ç¿»é¡µï¼Œä»¥å¸§ä¸ºå•ä½)
+	if nargin < 4 || isempty(big_scroll), big_scroll = 30; end  %page-up and page-down advance, in frames(ÏòÉÏ·­Ò³ºÍÏòÏÂ·­Ò³£¬ÒÔÖ¡Îªµ¥Î»)
 	if nargin < 5, key_func = []; end
 	
 	%check arguments

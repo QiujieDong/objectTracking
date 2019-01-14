@@ -9,7 +9,7 @@ function kf = polynomial_correlation(xf, yf, a, b)
 %
 %   Joao F. Henriques, 2014
 %   http://www.isr.uc.pt/~henriques/
-%Â§öÈ°πÂºèÊ†∏	
+%∂‡œÓ Ω∫À	
 	%cross-correlation term in Fourier domain
 	xyf = xf .* conj(yf);
 	xy = sum(real(ifft2(xyf)), 3);  %to spatial domain

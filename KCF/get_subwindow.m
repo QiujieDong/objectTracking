@@ -7,14 +7,14 @@ function out = get_subwindow(im, pos, sz)
 %   Joao F. Henriques, 2014
 %   http://www.isr.uc.pt/~henriques/
 
-	if isscalar(sz)  %square sub-window %isscalar - ç¡®å®šè¾“å…¥æ˜¯å¦ä¸ºæ ‡é‡
+	if isscalar(sz)  %square sub-window %isscalar - È·¶¨ÊäÈëÊÇ·ñÎª±êÁ¿
 		sz = [sz, sz];
 	end
 	
-	xs = floor(pos(2)) + (1:sz(2)) - floor(sz(2)/2);%ä¸­å¿ƒç‚¹åæ ‡ä¸ºpos,æ±‚å¾—åœ¨æ•´ä¸ªæœç´¢åŒºåŸŸçš„åæ ‡å‘é‡
+	xs = floor(pos(2)) + (1:sz(2)) - floor(sz(2)/2);%ÖĞĞÄµã×ø±êÎªpos,ÇóµÃÔÚÕû¸öËÑË÷ÇøÓòµÄ×ø±êÏòÁ¿
 	ys = floor(pos(1)) + (1:sz(1)) - floor(sz(1)/2);
 	
-	%check for out-of-bounds coordinates(åæ ‡), and set them to the values at
+	%check for out-of-bounds coordinates(×ø±ê), and set them to the values at
 	%the borders
 	xs(xs < 1) = 1;
 	ys(ys < 1) = 1;

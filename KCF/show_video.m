@@ -11,15 +11,15 @@ function update_visualization_func = show_video(img_files, video_path, resize_im
 %   remembered so you can navigate and inspect the video afterwards.
 %   Press 'Esc' to send a stop signal (returned by UPDATE_VISUALIZATION).
 
-%åœ¨ç»™å®šå›¾åƒæ–‡ä»¶åçš„å•å…ƒé˜µåˆ—ï¼Œå…¶è·¯å¾„ä»¥åŠæ˜¯å¦å°†å›¾åƒå¤§å°è°ƒæ•´ä¸ºä¸€åŠå¤§å°çš„æƒ…å†µä¸‹ï¼Œå¯è§†åŒ–äº¤äº’å¼å›¾å½¢ä¸­çš„è·Ÿè¸ªå™¨ã€‚
-%æ­¤å‡½æ•°è¿”å›UPDATE_VISUALIZATIONå‡½æ•°å¥æŸ„ï¼Œåªè¦è®¡ç®—äº†æ–°å¸§çš„ç»“æœï¼Œå°±å¯ä»¥ä½¿ç”¨å¸§ç¼–å·å’Œè¾¹ç•Œæ¡†[xï¼Œyï¼Œwidthï¼Œheight]è°ƒç”¨è¯¥å¥æŸ„ã€‚
-%è¿™æ ·ï¼Œæ‚¨çš„ç»“æœå°±ä¼šå®æ—¶æ˜¾ç¤ºï¼Œä½†ä¹Ÿä¼šè®°ä½å®ƒä»¬ï¼Œä»¥ä¾¿æ‚¨å¯ä»¥åœ¨ä»¥åå¯¼èˆªå’Œæ£€æŸ¥è§†é¢‘ã€‚
-%æŒ‰'Esc'å‘é€åœæ­¢ä¿¡å·ï¼ˆç”±UPDATE_VISUALIZATIONè¿”å›ï¼‰ã€‚
+%ÔÚ¸ø¶¨Í¼ÏñÎÄ¼şÃûµÄµ¥ÔªÕóÁĞ£¬ÆäÂ·¾¶ÒÔ¼°ÊÇ·ñ½«Í¼Ïñ´óĞ¡µ÷ÕûÎªÒ»°ë´óĞ¡µÄÇé¿öÏÂ£¬¿ÉÊÓ»¯½»»¥Ê½Í¼ĞÎÖĞµÄ¸ú×ÙÆ÷¡£
+%´Ëº¯Êı·µ»ØUPDATE_VISUALIZATIONº¯Êı¾ä±ú£¬Ö»Òª¼ÆËãÁËĞÂÖ¡µÄ½á¹û£¬¾Í¿ÉÒÔÊ¹ÓÃÖ¡±àºÅºÍ±ß½ç¿ò[x£¬y£¬width£¬height]µ÷ÓÃ¸Ã¾ä±ú¡£
+%ÕâÑù£¬ÄúµÄ½á¹û¾Í»áÊµÊ±ÏÔÊ¾£¬µ«Ò²»á¼Ç×¡ËüÃÇ£¬ÒÔ±ãÄú¿ÉÒÔÔÚÒÔºóµ¼º½ºÍ¼ì²éÊÓÆµ¡£
+%°´'Esc'·¢ËÍÍ£Ö¹ĞÅºÅ£¨ÓÉUPDATE_VISUALIZATION·µ»Ø£©¡£
 
 %   Joao F. Henriques, 2014
 %   http://www.isr.uc.pt/~henriques/
 
-%å¯è§†åŒ–è·Ÿè¸ªå™¨
+%¿ÉÊÓ»¯¸ú×ÙÆ÷
 	%store one instance per frame
 	num_frames = numel(img_files);
 	boxes = cell(num_frames,1);
@@ -33,7 +33,7 @@ function update_visualization_func = show_video(img_files, video_path, resize_im
 	im_h = [];
 	rect_h = [];
 	
-	update_visualization_func = @update_visualization;%@ - åˆ›å»ºåŠŸèƒ½å¥æŸ„
+	update_visualization_func = @update_visualization;%@ - ´´½¨¹¦ÄÜ¾ä±ú
 	stop_tracker = false;
 	
 
@@ -46,12 +46,12 @@ function update_visualization_func = show_video(img_files, video_path, resize_im
 	end
 
 	function redraw(frame)
-		%render main image(æ¸²æŸ“ä¸»å›¾åƒ)
+		%render main image(äÖÈ¾Ö÷Í¼Ïñ)
 		im = imread([video_path img_files{frame}]);
 		if size(im,3) > 1
 			im = rgb2gray(im);
 		end
-		if resize_image %å›¾åƒåƒç´ ç¼©å°äº†
+		if resize_image %Í¼ÏñÏñËØËõĞ¡ÁË
 			im = imresize(im, 0.5);
 		end
 		

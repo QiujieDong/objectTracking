@@ -38,28 +38,28 @@ function [positions, time] = tracker(video_path, img_files, pos, target_sz, ...
 
 	%if the target is large, lower the resolution(), we don't need that much
 	%detail
-    %è‹¥ç›®æ ‡å¤ªå¤§ï¼Œé™ä½åˆ†è¾¨ç‡ã€‚å°†ç›®æ ‡åŒºåŸŸwidth*height,è‹¥ç»“æœå¤§äº10000ï¼Œåˆ™è®¤ä¸ºç›®æ ‡åŒºåŸŸè¿‡å¤§ã€‚
+    %ÈôÄ¿±êÌ«´ó£¬½µµÍ·Ö±æÂÊ¡£½«Ä¿±êÇøÓòwidth*height,Èô½á¹û´óÓÚ10000£¬ÔòÈÏÎªÄ¿±êÇøÓò¹ı´ó¡£
 	resize_image = (sqrt(prod(target_sz)) >= 100);  %diagonal size >= threshold
 	if resize_image
-		pos = floor(pos / 2);%floor - æœè´Ÿæ— ç©·å¤§å››èˆäº”å…¥
+		pos = floor(pos / 2);%floor - ³¯¸ºÎŞÇî´óËÄÉáÎåÈë
 		target_sz = floor(target_sz / 2);
 	end
 
 
 	%window size, taking padding into account
-	window_sz = floor(target_sz * (1 + padding));%æœç´¢åŒºåŸŸä¸ºç›®æ ‡åŒºåŸŸçš„2.5å€
+	window_sz = floor(target_sz * (1 + padding));%ËÑË÷ÇøÓòÎªÄ¿±êÇøÓòµÄ2.5±¶
 	
 % 	%we could choose a size that is a power of two, for better FFT
 % 	%performance. in practice it is slower, due to the larger window size.
-% 	window_sz = 2 .^ nextpow2(window_sz); %nextpow2 - 2 çš„æ›´é«˜æ¬¡å¹‚çš„æŒ‡æ•°,
+% 	window_sz = 2 .^ nextpow2(window_sz); %nextpow2 - 2 µÄ¸ü¸ß´ÎÃİµÄÖ¸Êı,
 
 	
 	%create regression labels, gaussian shaped, with a bandwidth
-	%proportional(æˆæ¯”ä¾‹çš„) to target size
+	%proportional(³É±ÈÀıµÄ) to target size
 	output_sigma = sqrt(prod(target_sz)) * output_sigma_factor / cell_size;
-	yf = fft2(gaussian_shaped_labels(output_sigma, floor(window_sz / cell_size)));%è¿™é‡Œé™¤ä»¥cell_sizeå°±æ˜¯è€ƒè™‘ä¸€ä¸ªHOGè¡¨ç¤º4x4åƒç´ å•å…ƒ,æ¯ä¸ªcellä¸€ä¸ªlabel,windows_sz/cell_sizeå¯ä»¥çœ‹æˆ
-                                                                                  %åœ¨æœç´¢åŒºåŸŸwindows_szå†…æœ‰å¤šå°‘ä¸ªcell
-                                                                                  %è¿™é‡Œè¿›è¡Œäº†fft2å˜æ¢ï¼Œgaussian_shaped_labelsèƒ½é‡è°±ä¸­å¿ƒç”±å››è§’å›åˆ°ä¸­å¿ƒä½ç½®
+	yf = fft2(gaussian_shaped_labels(output_sigma, floor(window_sz / cell_size)));%ÕâÀï³ıÒÔcell_size¾ÍÊÇ¿¼ÂÇÒ»¸öHOG±íÊ¾4x4ÏñËØµ¥Ôª,Ã¿¸öcellÒ»¸ölabel,windows_sz/cell_size¿ÉÒÔ¿´³É
+                                                                                  %ÔÚËÑË÷ÇøÓòwindows_szÄÚÓĞ¶àÉÙ¸öcell
+                                                                                  %ÕâÀï½øĞĞÁËfft2±ä»»£¬gaussian_shaped_labelsÄÜÁ¿Æ×ÖĞĞÄÓÉËÄ½Ç»Øµ½ÖĞĞÄÎ»ÖÃ
 
 	%store pre-computed cosine window
 	cos_window = hann(size(yf,1)) * hann(size(yf,2))';	
@@ -79,11 +79,11 @@ function [positions, time] = tracker(video_path, img_files, pos, target_sz, ...
 		%load image
 		im = imread([video_path img_files{frame}]);
 		
-        if size(im,3) > 1%å°†å›¾åƒå˜ä¸ºç°åº¦
+        if size(im,3) > 1%½«Í¼Ïñ±äÎª»Ò¶È
 			im = rgb2gray(im);
         end
         
-        if resize_image%å¦‚æœä¸Šé¢å¯¹å›¾åƒè¿›è¡Œäº†ç¼©æ”¾ï¼Œé‚£ä¹ˆè¿™é‡Œä¹Ÿè¦å¯¹å…¶è¿›è¡Œç¼©æ”¾
+        if resize_image%Èç¹ûÉÏÃæ¶ÔÍ¼Ïñ½øĞĞÁËËõ·Å£¬ÄÇÃ´ÕâÀïÒ²Òª¶ÔÆä½øĞĞËõ·Å
 			im = imresize(im, 0.5);
         end
       
@@ -98,32 +98,32 @@ function [positions, time] = tracker(video_path, img_files, pos, target_sz, ...
 			%calculate response of the classifier at all shifts
 			switch kernel.type
 			case 'gaussian'
-				kzf = gaussian_correlation(zf, model_xf, kernel.sigma);%kzfæ˜¯å¤ç©ºé—´çš„
+				kzf = gaussian_correlation(zf, model_xf, kernel.sigma);%kzfÊÇ¸´¿Õ¼äµÄ
 			case 'polynomial'
 				kzf = polynomial_correlation(zf, model_xf, kernel.poly_a, kernel.poly_b);
 			case 'linear'
 				kzf = linear_correlation(zf, model_xf);
 			end
-			response = real(ifft2(model_alphaf .* kzf));  %equation for fast detectionï¼Œè®ºæ–‡ä¸­Eq.(15)
+			response = real(ifft2(model_alphaf .* kzf));  %equation for fast detection£¬ÂÛÎÄÖĞEq.(15)
 			%target location is at the maximum response. we must take into
 			%account the fact that, if the target doesn't move, the peak
-			%will appear at the top-left(å·¦ä¸Šæ–¹) corner, not at the center (this is
+			%will appear at the top-left(×óÉÏ·½) corner, not at the center (this is
 			%discussed in the paper). the responses wrap around cyclically.
-			[vert_delta, horiz_delta] = find(response == max(response(:)), 1);%findå‡½æ•°ä¸­å‚æ•°1æ„å‘³ç€ï¼Œåªå–ç¬¬ä¸€ä¸ªå‚æ•°æœ€å¤§å€¼çš„ä½ç½®;vert-è¡Œä½ç½®ï¼Œhoriz-åˆ—ä½ç½®
-			if vert_delta > size(zf,1) / 2  %wrap around to negative half-space of vertical axis(ç¼ ç»•åˆ°å‚ç›´è½´çš„è´ŸåŠç©ºé—´)
-				vert_delta = vert_delta - size(zf,1);%fft2ä¹‹åï¼Œæœ€å¤§å€¼åº”åœ¨å·¦ä¸Šè§’ï¼Œå¯æ˜¯ç”±äºå…ƒç´ ç¼ ç»•ï¼Œå¯èƒ½å¯¼è‡´æœ€å¤§å€¼åœ¨å…¶ä»–ä¸‰ä¸ªè§’ï¼Œå› æ­¤è¿™é‡Œå¯¹åœ¨å…¶ä»–ä¸‰ä¸ªè§’çš„æƒ…å†µ
-            end                                      %è¿›è¡Œå¤„ç†ï¼Œä»è€Œä½¿æœ€å¤§å€¼å§‹ç»ˆåœ¨å·¦ä¸Šè§’ã€‚è¿™ä¸€ç‚¹åœ¨è®ºæ–‡4.2èŠ‚ä¸é™„å½•1éƒ½æœ‰è¯´æ˜ã€‚
+			[vert_delta, horiz_delta] = find(response == max(response(:)), 1);%findº¯ÊıÖĞ²ÎÊı1ÒâÎ¶×Å£¬Ö»È¡µÚÒ»¸ö²ÎÊı×î´óÖµµÄÎ»ÖÃ;vert-ĞĞÎ»ÖÃ£¬horiz-ÁĞÎ»ÖÃ
+			if vert_delta > size(zf,1) / 2  %wrap around to negative half-space of vertical axis(²øÈÆµ½´¹Ö±ÖáµÄ¸º°ë¿Õ¼ä)
+				vert_delta = vert_delta - size(zf,1);%fft2Ö®ºó£¬×î´óÖµÓ¦ÔÚ×óÉÏ½Ç£¬¿ÉÊÇÓÉÓÚÔªËØ²øÈÆ£¬¿ÉÄÜµ¼ÖÂ×î´óÖµÔÚÆäËûÈı¸ö½Ç£¬Òò´ËÕâÀï¶ÔÔÚÆäËûÈı¸ö½ÇµÄÇé¿ö
+            end                                      %½øĞĞ´¦Àí£¬´Ó¶øÊ¹×î´óÖµÊ¼ÖÕÔÚ×óÉÏ½Ç¡£ÕâÒ»µãÔÚÂÛÎÄ4.2½ÚÓë¸½Â¼1¶¼ÓĞËµÃ÷¡£
 			if horiz_delta > size(zf,2) / 2  %same for horizontal axis
 				horiz_delta = horiz_delta - size(zf,2);
 			end
-			pos = pos + cell_size * [vert_delta - 1, horiz_delta - 1];%å‰é¢æ±‚HOGç‰¹å¾ç¼©æ”¾äº†cell_sizeå€ï¼Œè¿™é‡Œæ”¾å¤§cell_sizeå€
-        end                                                           %è¿™é‡Œå‡1æ˜¯å› ä¸ºå¦‚æœç›®æ ‡ä»(1,1)ç§»åˆ°(2,1),ä»…æ¨ªåæ ‡ç§»åŠ¨äº†ï¼Œæ‰€ä»¥å‡æ˜¯æ±‚å‡ºæœ€å¤§å“åº”åæ ‡ç›¸å¯¹äº(1,1),ä¹Ÿå°±æ˜¯å·¦ä¸Šè§’åæ ‡ç§»åŠ¨çš„è·ç¦»
+			pos = pos + cell_size * [vert_delta - 1, horiz_delta - 1];%Ç°ÃæÇóHOGÌØÕ÷Ëõ·ÅÁËcell_size±¶£¬ÕâÀï·Å´ócell_size±¶
+        end                                                           %ÕâÀï¼õ1ÊÇÒòÎªÈç¹ûÄ¿±ê´Ó(1,1)ÒÆµ½(2,1),½öºá×ø±êÒÆ¶¯ÁË£¬ËùÒÔ¼õÊÇÇó³ö×î´óÏìÓ¦×ø±êÏà¶ÔÓÚ(1,1),Ò²¾ÍÊÇ×óÉÏ½Ç×ø±êÒÆ¶¯µÄ¾àÀë
 
 		%obtain a subwindow for training at newly estimated target position
 		patch = get_subwindow(im, pos, window_sz);
 		xf = fft2(get_features(patch, features, cell_size, cos_window));
 
-		%Kernel Ridge Regression, calculate alphas (in Fourier domain) æ ¸è„Šå›å½’
+		%Kernel Ridge Regression, calculate alphas (in Fourier domain) ºË¼¹»Ø¹é
 		switch kernel.type
 		case 'gaussian'
 			kf = gaussian_correlation(xf, xf, kernel.sigma);
@@ -138,7 +138,7 @@ function [positions, time] = tracker(video_path, img_files, pos, target_sz, ...
 			model_alphaf = alphaf;
 			model_xf = xf;
         else
-			%subsequent frames, interpolate model %çº¿æ€§æ’å€¼
+			%subsequent frames, interpolate model %ÏßĞÔ²åÖµ
 			model_alphaf = (1 - interp_factor) * model_alphaf + interp_factor * alphaf;
 			model_xf = (1 - interp_factor) * model_xf + interp_factor * xf;
 		end
@@ -149,7 +149,7 @@ function [positions, time] = tracker(video_path, img_files, pos, target_sz, ...
 
 		%visualization
 		if show_visualization
-			box = [pos([2,1]) - target_sz([2,1])/2, target_sz([2,1])];%boxå·¦ä¸Šè§’x,y,æ¡†çš„width,height
+			box = [pos([2,1]) - target_sz([2,1])/2, target_sz([2,1])];%box×óÉÏ½Çx,y,¿òµÄwidth,height
 			stop = update_visualization(frame, box);
 			if stop, break, end  %user pressed Esc, stop early
 			

@@ -9,18 +9,18 @@ function kf = gaussian_correlation(xf, yf, sigma)
 %
 %   Joao F. Henriques, 2014
 %   http://www.isr.uc.pt/~henriques/
-%é«˜æ–¯æ ¸çš„è®¡ç®—ï¼Œåœ¨CSKå·²ç»æåˆ°è¿‡äº†	
+%¸ßË¹ºËµÄ¼ÆËã£¬ÔÚCSKÒÑ¾­Ìáµ½¹ıÁË	
 	N = size(xf,1) * size(xf,2);
-	xx = xf(:)' * xf(:) / N;  %squared norm of x,å¤æ•°ä¸€å¹³æ–¹å°±å˜æˆäº†å®æ•°
+	xx = xf(:)' * xf(:) / N;  %squared norm of x,¸´ÊıÒ»Æ½·½¾Í±ä³ÉÁËÊµÊı
 	yy = yf(:)' * yf(:) / N;  %squared norm of y
 	
 	%cross-correlation term in Fourier domain
-	xyf = xf .* conj(yf);%conj - å¤å…±è½­ã€‚è¿™é‡Œå®é™…ä¸Šå·²ç»å®Œæˆäº†å¾ªç¯çŸ©é˜µï¼Œåœ¨CSKä»£ç é‡Œæœ‰è§£é‡Š
-	xy = sum(real(ifft2(xyf)), 3);  %to spatial domain,åœ¨ç¬¬ä¸‰ç»´ä¸Šå¯¹æ•°æ®è¿›è¡Œæ±‚å’Œï¼Œå¾—äºŒç»´çŸ©é˜µã€‚è¿™å°±æ˜¯å¤šé€šé“çš„å®ç°
+	xyf = xf .* conj(yf);%conj - ¸´¹²éî¡£ÕâÀïÊµ¼ÊÉÏÒÑ¾­Íê³ÉÁËÑ­»·¾ØÕó£¬ÔÚCSK´úÂëÀïÓĞ½âÊÍ
+	xy = sum(real(ifft2(xyf)), 3);  %to spatial domain,ÔÚµÚÈıÎ¬ÉÏ¶ÔÊı¾İ½øĞĞÇóºÍ£¬µÃ¶şÎ¬¾ØÕó¡£Õâ¾ÍÊÇ¶àÍ¨µÀµÄÊµÏÖ
 	
 	%calculate gaussian response for all positions, then go back to the
 	%Fourier domain
-	kf = fft2(exp(-1 / sigma^2 * max(0, (xx + yy - 2 * xy) / numel(xf))));%è¿™é‡Œè¿›è¡Œäº†å‚…é‡Œå¶å˜æ¢ï¼Œæ‰€ä»¥èƒ½é‡è°±åˆ°äº†å››è§’
+	kf = fft2(exp(-1 / sigma^2 * max(0, (xx + yy - 2 * xy) / numel(xf))));%ÕâÀï½øĞĞÁË¸µÀïÒ¶±ä»»£¬ËùÒÔÄÜÁ¿Æ×µ½ÁËËÄ½Ç
 
 end
 

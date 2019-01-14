@@ -43,33 +43,33 @@ function [precision, fps] = run_tracker(video, kernel_type, feature_type, show_v
 	base_path = '/home/qiujiedong/project/MatLAB_workspace/configSeqs/OTB-100/';
 
 	%default settings  
-    %nargin - å‡½æ•°è¾“å…¥å‚æ•°æ•°ç›®
+    %nargin - º¯ÊıÊäÈë²ÎÊıÊıÄ¿
 	if nargin < 1, video = 'choose'; end
 	if nargin < 2, kernel_type = 'gaussian'; end
 	if nargin < 3, feature_type = 'hog'; end
-	if nargin < 4, show_visualization = ~strcmp(video, 'all'); end %videoçš„å€¼ä¸æ˜¯'all'
+	if nargin < 4, show_visualization = ~strcmp(video, 'all'); end %videoµÄÖµ²»ÊÇ'all'
 	if nargin < 5, show_plots = ~strcmp(video, 'all'); end
 
 
-	%parameters according to the paper. at this point we can override(è¦†ç›–)
+	%parameters according to the paper. at this point we can override(¸²¸Ç)
 	%parameters based on the chosen kernel or feature type
 	kernel.type = kernel_type;
 	
 	features.gray = false;
 	features.hog = false;
 	
-	padding = 1.5;  %extra area surrounding the target æœç´¢åŒºåŸŸæ˜¯ç›®æ ‡åŒºåŸŸçš„1.5å€
+	padding = 1.5;  %extra area surrounding the target ËÑË÷ÇøÓòÊÇÄ¿±êÇøÓòµÄ1.5±¶
 	lambda = 1e-4;  %regularization
 	output_sigma_factor = 0.1;  %spatial bandwidth (proportional to target)
-	                            %ç©ºé—´å¸¦å®½(ä¸ç›®æ ‡æˆæ¯”ä¾‹)
+	                            %¿Õ¼ä´ø¿í(ÓëÄ¿±ê³É±ÈÀı)
 	switch feature_type
 	case 'gray'
-		interp_factor = 0.075;  %linear interpolation factor for adaptation é€‚åº”çš„çº¿æ€§æ’å€¼å› å­
+		interp_factor = 0.075;  %linear interpolation factor for adaptation ÊÊÓ¦µÄÏßĞÔ²åÖµÒò×Ó
 
 		kernel.sigma = 0.2;  %gaussian kernel bandwidth
 		
-		kernel.poly_a = 1;  %polynomial kernel additive term  å¤šé¡¹å¼æ ¸çš„å‚æ•°
-		kernel.poly_b = 7;  %polynomial kernel exponent(æŒ‡æ•°)
+		kernel.poly_a = 1;  %polynomial kernel additive term  ¶àÏîÊ½ºËµÄ²ÎÊı
+		kernel.poly_b = 7;  %polynomial kernel exponent(Ö¸Êı)
 	
 		features.gray = true;
 		cell_size = 1;
@@ -83,16 +83,16 @@ function [precision, fps] = run_tracker(video, kernel_type, feature_type, show_v
 		kernel.poly_b = 9;
 		
 		features.hog = true;
-		features.hog_orientations = 9; %hogå–å‘
-		cell_size = 4;%æ¯4x4åƒç´ å•å…ƒç”±å•ä¸ªHOGæè¿°ç¬¦è¡¨ç¤ºï¼Œå³å°†åŸæ¥ç”±1x1çš„åƒç´ ç‚¹è¡¨ç¤ºå˜æˆç”±4x4åƒç´ ç‚¹ç»„æˆçš„cellå—è¡¨ç¤º
+		features.hog_orientations = 9; %hogÈ¡Ïò
+		cell_size = 4;%Ã¿4x4ÏñËØµ¥ÔªÓÉµ¥¸öHOGÃèÊö·û±íÊ¾£¬¼´½«Ô­À´ÓÉ1x1µÄÏñËØµã±íÊ¾±ä³ÉÓÉ4x4ÏñËØµã×é³ÉµÄcell¿é±íÊ¾
 		
 	otherwise
 		error('Unknown feature.')
 	end
 
 
-	assert(any(strcmp(kernel_type, {'linear', 'polynomial', 'gaussian'})), 'Unknown kernel.') %assert - æ¡ä»¶ä¸º false æ—¶å¼•å‘é”™è¯¯
-                                                                                              %strcmp - æ¯”è¾ƒå­—ç¬¦ä¸²
+	assert(any(strcmp(kernel_type, {'linear', 'polynomial', 'gaussian'})), 'Unknown kernel.') %assert - Ìõ¼şÎª false Ê±Òı·¢´íÎó
+                                                                                              %strcmp - ±È½Ï×Ö·û´®
 
 	switch video
 	case 'choose'
@@ -102,48 +102,48 @@ function [precision, fps] = run_tracker(video, kernel_type, feature_type, show_v
 			[precision, fps] = run_tracker(video, kernel_type, ...
 				feature_type, show_visualization, show_plots);
 			
-			if nargout == 0  %don't output precision as an argument %nargout - å‡½æ•°è¾“å‡ºå‚æ•°æ•°ç›®
+			if nargout == 0  %don't output precision as an argument %nargout - º¯ÊıÊä³ö²ÎÊıÊıÄ¿
 				clear precision
 			end
 		end
 		
 		
-	case 'all'  %video='all'æ—¶ï¼Œé€‰æ‹©base_pathæ•°æ®é›†ä¸­æ‰€æœ‰è§†é¢‘
+	case 'all'  %video='all'Ê±£¬Ñ¡Ôñbase_pathÊı¾İ¼¯ÖĞËùÓĞÊÓÆµ
 		%all videos, call self with each video name.
 		
 		%only keep valid directory names
 		dirs = dir(base_path);
 		videos = {dirs.name};
 		videos(strcmp('.', videos) | strcmp('..', videos) | ...
-			strcmp('anno', videos) | ~[dirs.isdir]) = []; %å¦‚æœvideosä¸­æœ‰'.'æˆ–'..'æˆ–'anno'æˆ–'éæ–‡ä»¶å¤¹ç±»å‹'
+			strcmp('anno', videos) | ~[dirs.isdir]) = []; %Èç¹ûvideosÖĞÓĞ'.'»ò'..'»ò'anno'»ò'·ÇÎÄ¼ş¼ĞÀàĞÍ'
 		
 		%the 'Jogging' sequence has 2 targets, create one entry for each.
 		%we could make this more general if multiple targets per video
-		%becomes a common occurence. å·²æ‰‹åŠ¨åˆ†å¼€
+		%becomes a common occurence. ÒÑÊÖ¶¯·Ö¿ª
 % 		videos(strcmpi('Jogging', videos)) = [];
 % 		videos(end+1:end+2) = {'Jogging.1', 'Jogging.2'};
 		
 		all_precisions = zeros(numel(videos),1);  %to compute averages
 		all_fps = zeros(numel(videos),1);
 		
-		if ~exist('matlabpool', 'file') %è‹¥ä¸å­˜åœ¨matlabpoolçš„toolboxæ–‡ä»¶(file)
-			%no parallel(å¹³è¡Œ) toolbox, use a simple 'for' to iterate
+		if ~exist('matlabpool', 'file') %Èô²»´æÔÚmatlabpoolµÄtoolboxÎÄ¼ş(file)
+			%no parallel(Æ½ĞĞ) toolbox, use a simple 'for' to iterate
 			for k = 1:numel(videos)
 				[all_precisions(k), all_fps(k)] = run_tracker(videos{k}, ...
 					kernel_type, feature_type, show_visualization, show_plots);
 			end
 		else
-			%evaluate trackers for all videos in parallel %è‹¥å­˜åœ¨matlabpoolçš„toolboxæ–‡ä»¶
-			if parpool('size') == 0 %parpool - Create parallel pool on cluster åˆ›å»ºå¹³è¡Œç°‡
+			%evaluate trackers for all videos in parallel %Èô´æÔÚmatlabpoolµÄtoolboxÎÄ¼ş
+			if parpool('size') == 0 %parpool - Create parallel pool on cluster ´´½¨Æ½ĞĞ´Ø
 				parpool open;
 			end
-			parfor k = 1:numel(videos) %parfor - å¹¶è¡Œå¾ªç¯
+			parfor k = 1:numel(videos) %parfor - ²¢ĞĞÑ­»·
 				[all_precisions(k), all_fps(k)] = run_tracker(videos{k}, ...
 					kernel_type, feature_type, show_visualization, show_plots);
 			end
 		end
 		
-		%compute average precision at 20px, and FPS %è®¡ç®—åœ¨æ‰€æœ‰è§†é¢‘ä¸Šçš„å¹³å‡precisionä¸FPS
+		%compute average precision at 20px, and FPS %¼ÆËãÔÚËùÓĞÊÓÆµÉÏµÄÆ½¾ùprecisionÓëFPS
 		mean_precision = mean(all_precisions);
 		fps = mean(all_fps);
 		fprintf('\nAverage precision (20px):% 1.3f, Average FPS:% 4.2f\n\n', mean_precision, fps)
@@ -153,14 +153,14 @@ function [precision, fps] = run_tracker(video, kernel_type, feature_type, show_v
 		
 		
 	case 'benchmark'
-		%running in benchmark mode - this is meant to interface(æ¥å£ï¼›ç•Œé¢) easily
+		%running in benchmark mode - this is meant to interface(½Ó¿Ú£»½çÃæ) easily
 		%with the benchmark's code.
 		
 		%get information (image file names, initial position, etc) from
 		%the benchmark's workspace variables
-		seq = evalin('base', 'subS');%evalin - åœ¨æŒ‡å®šçš„å·¥ä½œåŒºä¸­æ‰§è¡Œ MATLAB è¡¨è¾¾å¼;subs - Symbolic substitution
-		target_sz = seq.init_rect(1,[4,3]);%ç›®æ ‡åŒºåŸŸheigth,widht
-		pos = seq.init_rect(1,[2,1]) + floor(target_sz/2);%ç›®æ ‡ä¸­å¿ƒä½ç½®
+		seq = evalin('base', 'subS');%evalin - ÔÚÖ¸¶¨µÄ¹¤×÷ÇøÖĞÖ´ĞĞ MATLAB ±í´ïÊ½;subs - Symbolic substitution
+		target_sz = seq.init_rect(1,[4,3]);%Ä¿±êÇøÓòheigth,widht
+		pos = seq.init_rect(1,[2,1]) + floor(target_sz/2);%Ä¿±êÖĞĞÄÎ»ÖÃ
 		img_files = seq.s_frames;
 		video_path = [];
 		
@@ -170,19 +170,19 @@ function [precision, fps] = run_tracker(video, kernel_type, feature_type, show_v
 			cell_size, features, false);
 		
 		%return results to benchmark, in a workspace variable
-		rects = [positions(:,2) - target_sz(2)/2, positions(:,1) - target_sz(1)/2];%æ–°çš„ç›®æ ‡åŒºåŸŸå·¦ä¸Šè§’çš„ä½ç½®
+		rects = [positions(:,2) - target_sz(2)/2, positions(:,1) - target_sz(1)/2];%ĞÂµÄÄ¿±êÇøÓò×óÉÏ½ÇµÄÎ»ÖÃ
 		rects(:,3) = target_sz(2);
 		rects(:,4) = target_sz(1);
 		res.type = 'rect';
 		res.res = rects;
-		assignin('base', 'res', res);%assignin - ä¸ºæŒ‡å®šå·¥ä½œåŒºä¸­çš„å˜é‡èµ‹å€¼
+		assignin('base', 'res', res);%assignin - ÎªÖ¸¶¨¹¤×÷ÇøÖĞµÄ±äÁ¿¸³Öµ
 		
 		
 	otherwise
 		%we were given the name of a single video to process.
 	
 		%get image file names, initial state, and ground truth for evaluation
-		[img_files, pos, target_sz, ground_truth, video_path] = load_video_info(base_path, video);%è·å–videioçš„åŸºæœ¬ä¿¡æ¯
+		[img_files, pos, target_sz, ground_truth, video_path] = load_video_info(base_path, video);%»ñÈ¡videioµÄ»ù±¾ĞÅÏ¢
 		
 		
 		%call tracker function with all the relevant parameters

@@ -20,20 +20,20 @@ function x = get_features(im, features, cell_size, cos_window)
 
 	if features.hog
 		%HOG features, from Piotr's Toolbox
-		x = double(fhog(single(im) / 255, cell_size, features.hog_orientations));%single - å•ç²¾åº¦æ•°ç»„,xä¸ºæ±‚å¾—çš„HOGç‰¹å¾çš„ä¸€ä¸ªä¸‰ç»´çŸ©é˜µ;é™¤ä»¥255å½’ä¸€åŒ–åï¼Œèƒ½å¯¹å…‰ç…§å˜åŒ–å’Œé˜´å½±è·å¾—æ›´å¥½çš„æ•ˆæœã€‚
-		x(:,:,end) = [];  %remove all-zeros channel ("truncation feature"æˆªæ–­ç‰¹å¾)%å› ä¸ºæˆªæ–­ç‰¹å¾éƒ½æ˜¯é›¶ï¼Œå› æ­¤å°†æˆªæ–­ç‰¹å¾å»é™¤
+		x = double(fhog(single(im) / 255, cell_size, features.hog_orientations));%single - µ¥¾«¶ÈÊı×é,xÎªÇóµÃµÄHOGÌØÕ÷µÄÒ»¸öÈıÎ¬¾ØÕó;³ıÒÔ255¹éÒ»»¯ºó£¬ÄÜ¶Ô¹âÕÕ±ä»¯ºÍÒõÓ°»ñµÃ¸üºÃµÄĞ§¹û¡£
+		x(:,:,end) = [];  %remove all-zeros channel ("truncation feature"½Ø¶ÏÌØÕ÷)%ÒòÎª½Ø¶ÏÌØÕ÷¶¼ÊÇÁã£¬Òò´Ë½«½Ø¶ÏÌØÕ÷È¥³ı
 	end
 	
 	if features.gray
 		%gray-level (scalar feature)
-		x = double(im) / 255; %å°†åƒç´ å€¼å½’ä¸€åŒ–åˆ°0-1ä¹‹é—´
+		x = double(im) / 255; %½«ÏñËØÖµ¹éÒ»»¯µ½0-1Ö®¼ä
 		
-		x = x - mean(x(:));%å°†xå½’ä¸€åŒ–åˆ°(-0.5,0.5),è¿™åœ¨CSKä¸­æå‡ºçš„
+		x = x - mean(x(:));%½«x¹éÒ»»¯µ½(-0.5,0.5),ÕâÔÚCSKÖĞÌá³öµÄ
 	end
 	
 	%process with cosine window if needed
 	if ~isempty(cos_window)
-		x = bsxfun(@times, x, cos_window);%bsxfun - å¯¹ä¸¤ä¸ªæ•°ç»„åº”ç”¨æŒ‰å…ƒç´ è¿ç®—ï¼ˆå¯ç”¨éšå¼æ‰©å±•ï¼‰,@times-æ•°ç»„ä¹˜æ³•
+		x = bsxfun(@times, x, cos_window);%bsxfun - ¶ÔÁ½¸öÊı×éÓ¦ÓÃ°´ÔªËØÔËËã£¨ÆôÓÃÒşÊ½À©Õ¹£©,@times-Êı×é³Ë·¨
 	end
 	
 end
