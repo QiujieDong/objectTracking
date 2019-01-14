@@ -8,7 +8,7 @@
 
 clear ;clc
 %choose the path to the videos (you'll be able to choose one with the GUI)
-base_path = '/home/qiujiedong/project/MatLAB_workspace/configSeqs/OTB-100';
+base_path = 'D:\objectTracking\configSeqs\OTB-100';
 
 
 %parameters according to the paper:论文4.4节第四段
