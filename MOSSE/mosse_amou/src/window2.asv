@@ -41,8 +41,13 @@ wc=window(w_func,M);%wc为一维列向量,维度为width x 1
 % size(wr)
 % disp("wc")
 % size(wc)
+<<<<<<< HEAD
+[maskr,maskc]=meshgrid(wc,wr);%meshgrid鍑芥暟缁樺埗浜岀淮鎴栦笁缁寸綉缁?.maskr涓巑askc鐨勭淮搴︿竴鏍?,鍧囦负height x width
+%[X,Y]=meshgrid(x,y)鍩轰簬鍚戦噺x鍜寉涓寘鍚殑鍧愭爣杩斿洖浜岀淮缃戞牸鍧愭爣銆俋 鏄竴涓煩闃?,姣忎竴琛屾槸x鐨勪竴涓壇鏈?;Y涔熸槸涓?涓煩闃?,姣忎竴鍒楁槸y鐨勪竴涓壇鏈?.鍧愭爣X鍜孻琛ㄧず鐨勭綉鏍兼湁length(y)涓鍜宭ength(x)涓垪銆?
+=======
 [maskr,maskc]=meshgrid(wc,wr);%meshgrid函数绘制二维或三维网络.maskr与maskc的维度一样,均为height x width
 %[X,Y]=meshgrid(x,y)基于向量x和y中包含的坐标返回二维网格坐标。X 是一个矩阵,每一行是x的一个副本;Y也是一个矩阵,每一列是y的一个副本.坐标X和Y表示的网格有length(y)个行和length(x)个列。
+>>>>>>> NOSSE
 %maskc=repmat(wc,1,M); Old version
 %maskr=repmat(wr',N,1);
 
@@ -51,7 +56,11 @@ wc=window(w_func,M);%wc为一维列向量,维度为width x 1
 % disp("maskc")
 % size(maskc)
 
+<<<<<<< HEAD
+w=maskr.*maskc;%鐢熸垚涓巆rop image鐩稿悓缁村害鐨勭獥 
+=======
 w=maskr.*maskc;%生成与crop image相同维度的窗 
+>>>>>>> NOSSE
 % disp("w")
 % size(w)
 end
