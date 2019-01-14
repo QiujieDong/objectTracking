@@ -16,7 +16,7 @@ valid_features = {'gray', 'cn'};
 feature_levels = [1 10]';
 
 num_valid_features = length(valid_features);
-used_features = false(num_valid_features, 1);%num_valid_featuresè¡Œ1åˆ—çš„é€»è¾‘0æ•°ç»„
+used_features = false(num_valid_features, 1);%num_valid_featuresĞĞ1ÁĞµÄÂß¼­0Êı×é
 
 % get the used features
 for i = 1:num_valid_features
@@ -33,7 +33,7 @@ if size(im_patch, 3) == 1
     % Features that are available for grayscale sequances
     
     % Grayscale values (image intensity)
-    out = single(im_patch)/255 - 0.5;%ç°åº¦å›¾ç‰‡å½’ä¸€åŒ–åˆ°(-0.5,0.5)ä¹‹é—´
+    out = single(im_patch)/255 - 0.5;%»Ò¶ÈÍ¼Æ¬¹éÒ»»¯µ½(-0.5,0.5)Ö®¼ä
 else
     % Features that are available for color sequances
     

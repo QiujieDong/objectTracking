@@ -13,10 +13,10 @@ end
 
 RR=im(:,:,1);GG=im(:,:,2);BB=im(:,:,3);
 
-index_im = 1+floor(RR(:)/8)+32*floor(GG(:)/8)+32*32*floor(BB(:)/8);%å°†åƒç´ æ˜ å°„åˆ°normalized Color Name matrix
+index_im = 1+floor(RR(:)/8)+32*floor(GG(:)/8)+32*32*floor(BB(:)/8);%½«ÏñËØÓ³Éäµ½normalized Color Name matrix
 
 if(color==0)
-   [max1,w2cM]=max(w2c,[],2);%max(A,[],2) æ˜¯åŒ…å«æ¯ä¸€è¡Œçš„æœ€å¤§å€¼çš„åˆ—å‘é‡ã€‚max1ä¸­æ˜¯æœ€å¤§å€¼,w2cMæ˜¯æœ€å¤§å€¼ä½ç½® 
+   [max1,w2cM]=max(w2c,[],2);%max(A,[],2) ÊÇ°üº¬Ã¿Ò»ĞĞµÄ×î´óÖµµÄÁĞÏòÁ¿¡£max1ÖĞÊÇ×î´óÖµ,w2cMÊÇ×î´óÖµÎ»ÖÃ 
    out=reshape(w2cM(index_im(:)),size(im,1),size(im,2));
 end
 

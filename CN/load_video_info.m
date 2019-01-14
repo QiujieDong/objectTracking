@@ -8,12 +8,12 @@ function [img_files, pos, target_sz, ground_truth, video_path] = load_video_info
 %
 %   Joao F. Henriques, 2014
 %   http://www.isr.uc.pt/~henriques/
-%ä½¿ç”¨KCFçš„load_video_info.mæ›¿æ¢äº†åŸæ¥çš„load_video_info.må‡½æ•°ï¼ŒKCFçš„è¿™ä¸ªå¥½ç”¨ã€‚
-%åŒæ—¶ä¸ºäº†é€‚åº”CNä»£ç ï¼Œå¯¹éƒ¨åˆ†åšäº†ä¿®æ”¹ã€‚
+%Ê¹ÓÃKCFµÄload_video_info.mÌæ»»ÁËÔ­À´µÄload_video_info.mº¯Êı£¬KCFµÄÕâ¸öºÃÓÃ¡£
+%Í¬Ê±ÎªÁËÊÊÓ¦CN´úÂë£¬¶Ô²¿·Ö×öÁËĞŞ¸Ä¡£
 
-	%see if there's a suffix(åç¼€), specifying(ç¡®å®š) one of multiple targets, for
+	%see if there's a suffix(ºó×º), specifying(È·¶¨) one of multiple targets, for
 	%example the dot and number in 'Jogging.1' or 'Jogging.2'.
-    %å¤„ç†åƒ"Jogging"è¿™ç§ä¸€ä¸ªæ–‡ä»¶å¤¹åŒ…å«ä¸¤ä¸ªè§†é¢‘ä¿¡æ¯çš„æƒ…å†µï¼Œåœ¨æˆ‘ä½¿ç”¨æ•°æ®é›†æ—¶ï¼Œå·²æ‰‹åŠ¨åˆ†å¼€
+    %´¦ÀíÏñ"Jogging"ÕâÖÖÒ»¸öÎÄ¼ş¼Ğ°üº¬Á½¸öÊÓÆµĞÅÏ¢µÄÇé¿ö£¬ÔÚÎÒÊ¹ÓÃÊı¾İ¼¯Ê±£¬ÒÑÊÖ¶¯·Ö¿ª
 	if numel(video) >= 2 && video(end-1) == '.' && ~isnan(str2double(video(end)))
 		suffix = video(end-1:end);  %remember the suffix
 		video = video(1:end-2);  %remove it from the video name
@@ -32,32 +32,32 @@ function [img_files, pos, target_sz, ground_truth, video_path] = load_video_info
 	f = fopen(filename);
 	assert(f ~= -1, ['No initial position or ground truth to load ("' filename '").'])
     
-    %textscan - å°†å·²æ‰“å¼€çš„æ–‡æœ¬æ–‡ä»¶ä¸­çš„æ•°æ®è¯»å–åˆ°å…ƒèƒæ•°ç»„ C
-    %å½“ textscan æœªèƒ½è¯»å–æˆ–è½¬æ¢æ•°æ®æ—¶çš„è¡Œä¸ºï¼ŒæŒ‡å®šä¸ºç”± 'ReturnOnError' å’Œ true/false ç»„æˆçš„é€—å·åˆ†éš”å¯¹ç»„ã€‚å¦‚æœæ˜¯ trueï¼Œåˆ™ textscan ç»ˆæ­¢ï¼Œ
-    %ä¸äº§ç”Ÿé”™è¯¯ï¼Œè¿”å›æ‰€æœ‰è¯»å–çš„å­—æ®µã€‚å¦‚æœæ˜¯ falseï¼Œåˆ™ textscan ç»ˆæ­¢ï¼Œäº§ç”Ÿé”™è¯¯ï¼Œä¸è¿”å›è¾“å‡ºå…ƒèƒæ•°ç»„ã€‚
+    %textscan - ½«ÒÑ´ò¿ªµÄÎÄ±¾ÎÄ¼şÖĞµÄÊı¾İ¶ÁÈ¡µ½Ôª°ûÊı×é C
+    %µ± textscan Î´ÄÜ¶ÁÈ¡»ò×ª»»Êı¾İÊ±µÄĞĞÎª£¬Ö¸¶¨ÎªÓÉ 'ReturnOnError' ºÍ true/false ×é³ÉµÄ¶ººÅ·Ö¸ô¶Ô×é¡£Èç¹ûÊÇ true£¬Ôò textscan ÖÕÖ¹£¬
+    %²»²úÉú´íÎó£¬·µ»ØËùÓĞ¶ÁÈ¡µÄ×Ö¶Î¡£Èç¹ûÊÇ false£¬Ôò textscan ÖÕÖ¹£¬²úÉú´íÎó£¬²»·µ»ØÊä³öÔª°ûÊı×é¡£
     
     %the format is [x, y, width, height]
 	try
 		ground_truth = textscan(f, '%f,%f,%f,%f', 'ReturnOnError',false);  
 	catch  % try different format (no commas)
-		frewind(f);      %frewind - å°†æ–‡ä»¶ä½ç½®æŒ‡ç¤ºç¬¦ç§»è‡³æ‰€æ‰“å¼€æ–‡ä»¶çš„å¼€å¤´
+		frewind(f);      %frewind - ½«ÎÄ¼şÎ»ÖÃÖ¸Ê¾·ûÒÆÖÁËù´ò¿ªÎÄ¼şµÄ¿ªÍ·
 		ground_truth = textscan(f, '%f %f %f %f');  
 	end
-	ground_truth = cat(2, ground_truth{:});%cat - æ²¿æŒ‡å®šç»´åº¦ä¸²è”æ•°ç»„,cat(dim,A,B),dim=1æ˜¯[A;B],dim=2æ˜¯[A,B]
+	ground_truth = cat(2, ground_truth{:});%cat - ÑØÖ¸¶¨Î¬¶È´®ÁªÊı×é,cat(dim,A,B),dim=1ÊÇ[A;B],dim=2ÊÇ[A,B]
 	fclose(f);
 	
 	%set initial position and size
 	target_sz = [ground_truth(1,4), ground_truth(1,3)];
-%     pos = [ground_truth(1,2), ground_truth(1,1)] +floor(target_sz/2);  %KCFä¸­æ˜¯è¿™ä¸ª
-	pos = [ground_truth(1,2), ground_truth(1,1)] ;%è¿™é‡ŒCNç”¨çš„posä¸æ˜¯ä¸­å¿ƒåæ ‡ï¼Œè€Œæ˜¯å·¦ä¸Šè§’åæ ‡
+%     pos = [ground_truth(1,2), ground_truth(1,1)] +floor(target_sz/2);  %KCFÖĞÊÇÕâ¸ö
+	pos = [ground_truth(1,2), ground_truth(1,1)] ;%ÕâÀïCNÓÃµÄpos²»ÊÇÖĞĞÄ×ø±ê£¬¶øÊÇ×óÉÏ½Ç×ø±ê
 	
-	if size(ground_truth,1) == 1%è¿”å›ground_truthåœ¨ç¬¬ä¸€ä¸ªç»´åº¦çš„é•¿åº¦ï¼Œå³è¿”å›ground_truthçš„è¡Œæ•°
+	if size(ground_truth,1) == 1%·µ»Øground_truthÔÚµÚÒ»¸öÎ¬¶ÈµÄ³¤¶È£¬¼´·µ»Øground_truthµÄĞĞÊı
 		%we have ground truth for the first frame only (initial position)
 		ground_truth = [];
 	else
 		%store positions instead of boxes
-%         ground_truth = ground_truth(:,[2,1]) + ground_truth(:,[4,3]) /2; %KCFä¸­æ˜¯è¿™ä¸ª
-		ground_truth = [ground_truth(:,[2,1]) + (ground_truth(:,[4,3]) - 1) / 2 , ground_truth(:,[4,3])];%è¿™é‡Œå‡å»1æ“ä½œï¼Œå¯¹è¯„ä»·æŒ‡æ ‡å½±å“éƒ½ä¸å¤§ã€‚
+%         ground_truth = ground_truth(:,[2,1]) + ground_truth(:,[4,3]) /2; %KCFÖĞÊÇÕâ¸ö
+		ground_truth = [ground_truth(:,[2,1]) + (ground_truth(:,[4,3]) - 1) / 2 , ground_truth(:,[4,3])];%ÕâÀï¼õÈ¥1²Ù×÷£¬¶ÔÆÀ¼ÛÖ¸±êÓ°Ïì¶¼²»´ó¡£
 	end
 	
 	
@@ -66,26 +66,26 @@ function [img_files, pos, target_sz, ground_truth, video_path] = load_video_info
 	
 	%for these sequences, we must limit ourselves to a range of frames.
 	%for all others, we just load all png/jpg files in the folder.
-    %å¯¹äºå‡ ä¸ªç‰¹æ®Šçš„è§†é¢‘é›†ï¼Œåªå–å…¶æ•°æ®é›†ä¸­çš„ä¸€éƒ¨åˆ†å¸§ã€‚å…¶ä»–çš„è§†é¢‘é›†å–æ‰€æœ‰å¸§
+    %¶ÔÓÚ¼¸¸öÌØÊâµÄÊÓÆµ¼¯£¬Ö»È¡ÆäÊı¾İ¼¯ÖĞµÄÒ»²¿·ÖÖ¡¡£ÆäËûµÄÊÓÆµ¼¯È¡ËùÓĞÖ¡
 	frames = {'David', 300, 770;
 			  'Football1', 1, 74;
 			  'Freeman3', 1, 460;
 			  'Freeman4', 1, 283};
 	
-	idx = find(strcmpi(video, frames(:,1))); %strcmpi - æ¯”è¾ƒå­—ç¬¦ä¸²ï¼ˆä¸åŒºåˆ†å¤§å°å†™ï¼‰,å¦‚æœäºŒè€…ç›¸åŒï¼Œå‡½æ•°å°†è¿”å› 1 (true)ï¼Œå¦åˆ™è¿”å›ç©ºå‘é‡
+	idx = find(strcmpi(video, frames(:,1))); %strcmpi - ±È½Ï×Ö·û´®£¨²»Çø·Ö´óĞ¡Ğ´£©,Èç¹û¶şÕßÏàÍ¬£¬º¯Êı½«·µ»Ø 1 (true)£¬·ñÔò·µ»Ø¿ÕÏòÁ¿
 	
 	if isempty(idx) 
 		%general case, just list all images
-		img_files = dir([video_path '*.png']);%dirè¾“å‡ºæ ¼å¼ä¸ºstructç»“æ„ä½“æ•°ç»„
+		img_files = dir([video_path '*.png']);%dirÊä³ö¸ñÊ½Îªstruct½á¹¹ÌåÊı×é
 		if isempty(img_files)
 			img_files = dir([video_path '*.jpg']);
 			assert(~isempty(img_files), 'No image files to load.')
 		end
-		img_files = sort({img_files.name});%sort - æŒ‰å‡åºå¯¹æ•°ç»„å…ƒç´ è¿›è¡Œæ’åºï¼Œè¾“å‡ºçš„æ ¼å¼ä¸ºcellå…ƒèƒæ•°ç»„
+		img_files = sort({img_files.name});%sort - °´ÉıĞò¶ÔÊı×éÔªËØ½øĞĞÅÅĞò£¬Êä³öµÄ¸ñÊ½ÎªcellÔª°ûÊı×é
 	else
 		%list specified frames. try png first, then jpg.
 		if exist(sprintf('%s%04i.png', video_path, frames{idx,2}), 'file')
-			img_files = num2str((frames{idx,2} : frames{idx,3})', '%04i.png');%è¾“å‡ºæ ¼å¼ä¸ºcharå­—ç¬¦ä¸²
+			img_files = num2str((frames{idx,2} : frames{idx,3})', '%04i.png');%Êä³ö¸ñÊ½Îªchar×Ö·û´®
 			
 		elseif exist(sprintf('%s%04i.jpg', video_path, frames{idx,2}), 'file')
 			img_files = num2str((frames{idx,2} : frames{idx,3})', '%04i.jpg');
@@ -94,7 +94,7 @@ function [img_files, pos, target_sz, ground_truth, video_path] = load_video_info
 			error('No image files to load.')
 		end
 		
-		img_files = cellstr(img_files);%å°†charç±»å‹è½¬æ¢æˆcellå…ƒèƒæ•°ç»„
+		img_files = cellstr(img_files);%½«charÀàĞÍ×ª»»³ÉcellÔª°ûÊı×é
 	end
 	
 end

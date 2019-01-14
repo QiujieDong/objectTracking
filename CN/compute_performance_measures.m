@@ -59,7 +59,7 @@ tracked_area = positions(valid_ind,3) .* positions(valid_ind,4);
 ground_truth_area = ground_truth(valid_ind,3) .* ground_truth(valid_ind,4);
 
 % calculate PASCAL overlaps
-%è¿™é‡Œæ±‚å¾—overlapç‡æ˜¯overlap_areaåŒºåŸŸåœ¨tracked_areaä¸ground_truth_areaä¹‹å’Œçš„åŒºåŸŸä¸Šæ‰€å æ¯”ç‡
+%ÕâÀïÇóµÃoverlapÂÊÊÇoverlap_areaÇøÓòÔÚtracked_areaÓëground_truth_areaÖ®ºÍµÄÇøÓòÉÏËùÕ¼±ÈÂÊ
 overlaps = overlap_area ./ (tracked_area + ground_truth_area - overlap_area);
 
 % calculate PASCAL precision

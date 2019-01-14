@@ -1,7 +1,7 @@
 function video_name = choose_video(base_path)
 
 % video_path = choose_video(base_path)
-%鎸夌収KCF浠ｇ爜灏嗘鏂囦欢杩涜鏇存敼
+%按照KCF代码将此文件进行更改
 %process path to make sure it's uniform
 if ispc(), base_path = strrep(base_path, '\', '/'); end
 if base_path(end) ~= '/', base_path(end+1) = '/'; end

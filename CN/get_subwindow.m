@@ -12,7 +12,7 @@ if isscalar(sz)  %square sub-window
     sz = [sz, sz];
 end
 
-xs = floor(pos(2)) + (1:sz(2)) - floor(sz(2)/2);%ä»¥ç›®æ ‡ä¸­å¿ƒä¸ºä¸­å¿ƒçš„æœç´¢åŒºåŸŸ
+xs = floor(pos(2)) + (1:sz(2)) - floor(sz(2)/2);%ÒÔÄ¿±êÖĞĞÄÎªÖĞĞÄµÄËÑË÷ÇøÓò
 ys = floor(pos(1)) + (1:sz(1)) - floor(sz(1)/2);
 
 %check for out-of-bounds coordinates, and set them to the values at
@@ -23,7 +23,7 @@ xs(xs > size(im,2)) = size(im,2);
 ys(ys > size(im,1)) = size(im,1);
 
 %extract image
-im_patch = im(ys, xs, :);%å°†æœç´¢åŒºåŸŸæå–å‡ºæ¥
+im_patch = im(ys, xs, :);%½«ËÑË÷ÇøÓòÌáÈ¡³öÀ´
 
 % compute non-pca feature map
 if ~isempty(non_pca_features)

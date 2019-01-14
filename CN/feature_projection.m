@@ -18,14 +18,14 @@ else
     % to a window
     x_proj_pca = reshape(x_pca * projection_matrix, [height, width, num_pca_out]);
     
-    % concatinate(ä¸²è”) the feature windows
+    % concatinate(´®Áª) the feature windows
     if isempty(x_npca)
         z = x_proj_pca;
     else
-        z = cat(3, x_npca, x_proj_pca);%åœ¨ç¬¬ä¸‰ä¸ªç»´åº¦ä¸Šå¯¹çŸ©é˜µè¿›è¡Œä¸²è”ã€‚è¾“å‡ºzä¸ºheight*wigth*3ç»´åº¦ï¼ŒPCAç‰¹å¾ä¸ºäºŒç»´ï¼Œno_PCAç‰¹å¾ä¸€ç»´ï¼Œä¸²è”åç»„æˆä¸‰ç»´
+        z = cat(3, x_npca, x_proj_pca);%ÔÚµÚÈı¸öÎ¬¶ÈÉÏ¶Ô¾ØÕó½øĞĞ´®Áª¡£Êä³özÎªheight*wigth*3Î¬¶È£¬PCAÌØÕ÷Îª¶şÎ¬£¬no_PCAÌØÕ÷Ò»Î¬£¬´®Áªºó×é³ÉÈıÎ¬
     end
 end
 
 % do the windowing of the output
-z = bsxfun(@times, cos_window, z);%@times-æ•°ç»„ä¹˜æ³•
+z = bsxfun(@times, cos_window, z);%@times-Êı×é³Ë·¨
 end

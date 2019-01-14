@@ -30,16 +30,16 @@ w2c = temp.w2crs;
 use_dimensionality_reduction = ~isempty(compressed_features);
 
 % window size, taking padding into account
-sz = floor(target_sz * (1 + padding));%æœç´¢åŒºåŸŸ
+sz = floor(target_sz * (1 + padding));%ËÑË÷ÇøÓò
 
 % desired output (gaussian shaped), bandwidth proportional to target size
 output_sigma = sqrt(prod(target_sz)) * output_sigma_factor;
-[rs, cs] = ndgrid((1:sz(1)) - floor(sz(1)/2), (1:sz(2)) - floor(sz(2)/2));%ä¸­å¿ƒç‚¹ä¸º(0,0)
-y = exp(-0.5 / output_sigma^2 * (rs.^2 + cs.^2));%ä½¿ç”¨é«˜æ–¯å‡½æ•°æ ‡ç­¾
-yf = single(fft2(y));%single-å•ç²¾åº¦æ•°ç»„
+[rs, cs] = ndgrid((1:sz(1)) - floor(sz(1)/2), (1:sz(2)) - floor(sz(2)/2));%ÖĞĞÄµãÎª(0,0)
+y = exp(-0.5 / output_sigma^2 * (rs.^2 + cs.^2));%Ê¹ÓÃ¸ßË¹º¯Êı±êÇ©
+yf = single(fft2(y));%single-µ¥¾«¶ÈÊı×é
 
 % store pre-computed cosine window
-cos_window = single(hann(sz(1)) * hann(sz(2))');%æ±‰å®çª—
+cos_window = single(hann(sz(1)) * hann(sz(2))');%ººÄş´°
 
 % to calculate precision
 positions = zeros(numel(img_files), 4);
@@ -97,28 +97,28 @@ for frame = 1:num_frames
         data_mean = mean(z_pca, 1);
         
         % substract the mean from the appearance to get the data matrix
-        data_matrix = bsxfun(@minus, z_pca, data_mean);%bsxfun - å¯¹ä¸¤ä¸ªæ•°ç»„åº”ç”¨æŒ‰å…ƒç´ è¿ç®—,minuså‡å»
+        data_matrix = bsxfun(@minus, z_pca, data_mean);%bsxfun - ¶ÔÁ½¸öÊı×éÓ¦ÓÃ°´ÔªËØÔËËã,minus¼õÈ¥
         
-        % calculate the covariance(åæ–¹å·®) matrix
+        % calculate the covariance(Ğ­·½²î) matrix
         cov_matrix = 1/(prod(sz) - 1) * (data_matrix' * data_matrix);
         
-        % calculate the principal components (pca_basis) and corresponding variances(ä¸»æˆåˆ†å’Œç›¸åº”çš„æ–¹å·®)
+        % calculate the principal components (pca_basis) and corresponding variances(Ö÷³É·ÖºÍÏàÓ¦µÄ·½²î)
         if frame == 1
-            [pca_basis, pca_variances, ~] = svd(cov_matrix);%[U,S,V] = svd(A) æ‰§è¡ŒçŸ©é˜µ A çš„å¥‡å¼‚å€¼åˆ†è§£ï¼Œå› æ­¤ A = U*S*V'ï¼Œå…¶ä¸­U-å·¦å¥‡å¼‚å‘é‡ï¼Œä»¥çŸ©é˜µåˆ—å½¢å¼è¿”å›
-                                                            %S -å¥‡å¼‚å€¼ï¼Œä»¥å¯¹è§’çŸ©é˜µå½¢å¼è¿”å›ï¼ŒV-å³å¥‡å¼‚å‘é‡ï¼Œä»¥çŸ©é˜µçš„åˆ—å½¢å¼è¿”å›ã€‚
+            [pca_basis, pca_variances, ~] = svd(cov_matrix);%[U,S,V] = svd(A) Ö´ĞĞ¾ØÕó A µÄÆæÒìÖµ·Ö½â£¬Òò´Ë A = U*S*V'£¬ÆäÖĞU-×óÆæÒìÏòÁ¿£¬ÒÔ¾ØÕóÁĞĞÎÊ½·µ»Ø
+                                                            %S -ÆæÒìÖµ£¬ÒÔ¶Ô½Ç¾ØÕóĞÎÊ½·µ»Ø£¬V-ÓÒÆæÒìÏòÁ¿£¬ÒÔ¾ØÕóµÄÁĞĞÎÊ½·µ»Ø¡£
         else
             [pca_basis, pca_variances, ~] = svd((1 - compression_learning_rate) * old_cov_matrix + compression_learning_rate * cov_matrix);
         end
         
-        % calculate the projection matrix(æŠ•å½±çŸ©é˜µ) as the first principal(ç¬¬ä¸€ä¸»è¦)
+        % calculate the projection matrix(Í¶Ó°¾ØÕó) as the first principal(µÚÒ»Ö÷Òª)
         % components and extract their corresponding variances
-        projection_matrix = pca_basis(:, 1:num_compressed_dim);%å´æ©è¾¾çš„æœºå™¨å­¦ä¹ è¯¾ç¨‹ä¸­è®²åˆ°ï¼Œéœ€è¦ç”±nç»´é™åˆ°kç»´ï¼Œå°±å–å·¦å¥‡å¼‚çŸ©é˜µçš„å‰kåˆ—
+        projection_matrix = pca_basis(:, 1:num_compressed_dim);%Îâ¶÷´ïµÄ»úÆ÷Ñ§Ï°¿Î³ÌÖĞ½²µ½£¬ĞèÒªÓÉnÎ¬½µµ½kÎ¬£¬¾ÍÈ¡×óÆæÒì¾ØÕóµÄÇ°kÁĞ
         projection_variances = pca_variances(1:num_compressed_dim, 1:num_compressed_dim);
         
         if frame == 1
             % initialize the old covariance matrix using the computed
             % projection matrix and variances
-            %è¿™é‡Œprojection_matrix * projection_variances*projection_matrix'å¯ä»¥ç†è§£ä¸ºå°†é™ä¸ºåçš„æ•°æ®è¿›è¡Œç›¸ä¹˜å›åˆ°å›¾åƒæ•°æ®å½¢å¼ï¼Œå³A = U*S*V'ï¼Œè¿™é‡Œæ˜¯A = U*S*U'ã€‚
+            %ÕâÀïprojection_matrix * projection_variances*projection_matrix'¿ÉÒÔÀí½âÎª½«½µÎªºóµÄÊı¾İ½øĞĞÏà³Ë»Øµ½Í¼ÏñÊı¾İĞÎÊ½£¬¼´A = U*S*V'£¬ÕâÀïÊÇA = U*S*U'¡£
             old_cov_matrix = projection_matrix * projection_variances * projection_matrix';
         else
             % update the old covariance matrix using the computed
