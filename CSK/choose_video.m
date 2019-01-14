@@ -3,38 +3,38 @@ function video_path = choose_video(base_path)
 %   Allows the user to choose a video (sub-folder in the given path).
 %   Returns the full path to the selected sub-folder.
 %
-%   Joï¿½o F. Henriques, 2012
+%   Jo?o F. Henriques, 2012
 %   http://www.isr.uc.pt/~henriques/
 
 	%process path to make sure it's uniform
 	
-    if ispc() %ispcç”¨æ¥åˆ¤æ–­å½“å‰çš„ç”µè„‘ç³»ç»Ÿæ˜¯å¦æ˜¯windowsç³»ç»Ÿï¼Œæ˜¯è¿”å›1ï¼Œä¸æ˜¯è¿”å›0 
-        base_path = strrep(base_path, '\', '/');%strrepæŸ¥æ‰¾å¹¶æ›¿æ¢å­å­—ç¬¦ä¸²,å°†strä¸­å‡ºç°çš„æ‰€æœ‰oldéƒ½æ›¿æ¢ä¸ºnew.newStr=strrep(str,old,new)
+    if ispc() %ispcÓÃÀ´ÅĞ¶Ïµ±Ç°µÄµçÄÔÏµÍ³ÊÇ·ñÊÇwindowsÏµÍ³£¬ÊÇ·µ»Ø1£¬²»ÊÇ·µ»Ø0 
+        base_path = strrep(base_path, '\', '/');%strrep²éÕÒ²¢Ìæ»»×Ó×Ö·û´®,½«strÖĞ³öÏÖµÄËùÓĞold¶¼Ìæ»»Îªnew.newStr=strrep(str,old,new)
     end
     
-    if base_path(end) ~= '/' %å®Œå–„base_path
+    if base_path(end) ~= '/' %ÍêÉÆbase_path
         base_path(end+1) = '/'; 
     end
 	
 	%list all sub-folders
-	contents = dir(base_path);%è¿”å›å½“å‰è·¯å¾„ä¸­çš„æ‰€æœ‰æ–‡ä»¶ä»¥åŠæ–‡ä»¶å¤¹æ‰€ç»„æˆçš„åˆ—è¡¨(è¿™é‡Œé¢åŒ…å«'.'å’Œ'..')
-	names = {};%ç”¨æ¥å­˜å‚¨æ‰€æœ‰æ–‡ä»¶å¤¹çš„name
-	for k = 1:numel(contents)%numelè¿”å›æ•°ç»„ä¸­å…ƒç´ ä¸ªæ•°
+	contents = dir(base_path);%·µ»Øµ±Ç°Â·¾¶ÖĞµÄËùÓĞÎÄ¼şÒÔ¼°ÎÄ¼ş¼ĞËù×é³ÉµÄÁĞ±í(ÕâÀïÃæ°üº¬'.'ºÍ'..')
+	names = {};%ÓÃÀ´´æ´¢ËùÓĞÎÄ¼ş¼ĞµÄname
+	for k = 1:numel(contents)%numel·µ»ØÊı×éÖĞÔªËØ¸öÊı
 		name = contents(k).name;
-		if isfolder([base_path name]) && ~strcmp(name, '.') && ~strcmp(name, '..')%MATLABå»ºè®®å°†isdiræ”¹ä¸ºisfolder; strcmpä¸ºå­—ç¬¦ä¸²æ¯”è¾ƒå‡½æ•°
+		if isfolder([base_path name]) && ~strcmp(name, '.') && ~strcmp(name, '..')%MATLAB½¨Òé½«isdir¸ÄÎªisfolder; strcmpÎª×Ö·û´®±È½Ïº¯Êı
 			names{end+1} = name;  %#ok
 		end
 	end
 	
 	%no sub-folders found
 	
-    if isempty(names)%å¦‚æœå½“å‰è·¯å¾„ä¸­æ²¡æœ‰æ–‡ä»¶å¤¹ 
+    if isempty(names)%Èç¹ûµ±Ç°Â·¾¶ÖĞÃ»ÓĞÎÄ¼ş¼Ğ 
         video_path = []; 
         return; 
     end
 	
 	%choice GUI
-	choice = listdlg('ListString',names, 'Name','Choose video', 'SelectionMode','single');%åˆ—è¡¨é€‰æ‹©å¯¹è¯æ¡† Listdlg
+	choice = listdlg('ListString',names, 'Name','Choose video', 'SelectionMode','single');%ÁĞ±íÑ¡Ôñ¶Ô»°¿ò Listdlg
 	
 	if isempty(choice)  %user cancelled
 		video_path = [];

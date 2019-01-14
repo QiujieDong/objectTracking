@@ -9,34 +9,34 @@ function [img_files, pos, target_sz, resize_image, ground_truth, video_path] = l
 %   The path to the video is returned, since it may change if the images
 %   are located in a sub-folder (as is the default for MILTrack's videos).
 %
-%   Joï¿½o F. Henriques, 2012
+%   Jo?o F. Henriques, 2012
 %   http://www.isr.uc.pt/~henriques/
 
 	%load ground truth from text file (MILTrack's format)
-	text_files = dir([video_path '*_rect.txt']); %ground_truth_rect.txtä¸­åŒ…å«æ¯ä¸€å¸§ä¸­ç›®æ ‡çœŸå®æ‰€åœ¨ä½ç½®
-	assert(~isempty(text_files), 'No initial position and groundtruth_rect.txt to load.')%æ–­è¨€å‡½æ•°ï¼Œè‹¥ä¸æ»¡è¶³æ¡ä»¶ï¼Œåˆ™è·³å‡ºé”™è¯¯ä¿¡æ¯
-                                        %å¦‚ï¼šassert(a>=0,'ä½ çš„aå°äº0')ï¼šè‹¥aå€¼å¤§äºç­‰äº0ï¼Œåˆ™ç¨‹åºç»§ç»­å‘ä¸‹è¿è¡Œï¼›è‹¥aå€¼å°äº0ï¼Œåˆ™æ‰“å°é”™è¯¯æç¤ºä¿¡æ¯"ä½ çš„aå°äº0"
+	text_files = dir([video_path '*_rect.txt']); %ground_truth_rect.txtÖĞ°üº¬Ã¿Ò»Ö¡ÖĞÄ¿±êÕæÊµËùÔÚÎ»ÖÃ
+	assert(~isempty(text_files), 'No initial position and groundtruth_rect.txt to load.')%¶ÏÑÔº¯Êı£¬Èô²»Âú×ãÌõ¼ş£¬ÔòÌø³ö´íÎóĞÅÏ¢
+                                        %Èç£ºassert(a>=0,'ÄãµÄaĞ¡ÓÚ0')£ºÈôaÖµ´óÓÚµÈÓÚ0£¬Ôò³ÌĞò¼ÌĞøÏòÏÂÔËĞĞ£»ÈôaÖµĞ¡ÓÚ0£¬Ôò´òÓ¡´íÎóÌáÊ¾ĞÅÏ¢"ÄãµÄaĞ¡ÓÚ0"
 
-                                            %textscanå‡½æ•°ï¼Œå…¶å®åŸºæœ¬å’Œtextreadå·®ä¸å¤šï¼Œä½†æ˜¯å…¶åŠ å…¥äº†æ›´å¤šçš„å‚æ•°ï¼Œæœ‰äº†å¾ˆå¤šä¼˜åŠ¿ã€‚
-                                            %textscanæ›´é€‚åˆè¯»å…¥å¤§æ–‡ä»¶ï¼›å¯ä»¥ä»æ–‡ä»¶çš„ä»»ä½•ä½ç½®å¼€å§‹è¯»å…¥ï¼Œè€Œtextread åªèƒ½ä»æ–‡ä»¶å¼€å¤´å¼€å§‹è¯»å…¥ï¼›
-                                            %åªè¿”å›ä¸€ä¸ªç»†èƒçŸ©é˜µï¼Œè€Œtextreadè¦è¿”å›å¤šä¸ªæ•°ç»„ï¼›æä¾›æ›´å¤šè½¬æ¢è¯»å…¥æ•°æ®çš„é€‰æ‹©ï¼›æä¾›ç»™ç”¨æˆ·æ›´å¤šçš„é…ç½®å‚æ•°ã€‚
+                                            %textscanº¯Êı£¬ÆäÊµ»ù±¾ºÍtextread²î²»¶à£¬µ«ÊÇÆä¼ÓÈëÁË¸ü¶àµÄ²ÎÊı£¬ÓĞÁËºÜ¶àÓÅÊÆ¡£
+                                            %textscan¸üÊÊºÏ¶ÁÈë´óÎÄ¼ş£»¿ÉÒÔ´ÓÎÄ¼şµÄÈÎºÎÎ»ÖÃ¿ªÊ¼¶ÁÈë£¬¶øtextread Ö»ÄÜ´ÓÎÄ¼ş¿ªÍ·¿ªÊ¼¶ÁÈë£»
+                                            %Ö»·µ»ØÒ»¸öÏ¸°û¾ØÕó£¬¶øtextreadÒª·µ»Ø¶à¸öÊı×é£»Ìá¹©¸ü¶à×ª»»¶ÁÈëÊı¾İµÄÑ¡Ôñ£»Ìá¹©¸øÓÃ»§¸ü¶àµÄÅäÖÃ²ÎÊı¡£
 	f = fopen([video_path text_files(1).name]);
 	ground_truth = textscan(f, '%f,%f,%f,%f');  %[x, y, width, height]
-    ground_truth = cat(2, ground_truth{:});%catç”¨æ¥è¿æ¥çŸ©é˜µï¼Œ2è¡¨ç¤ºæ–°è¿æ¥çš„çŸ©é˜µä¸ºäºŒç»´ï¼Œå³è¡Œæ•°å’Œåˆ—æ•°ä¸ºæ‰€è¦è¿æ¥çŸ©é˜µçš„è¡Œæ•°å’Œåˆ—æ•°
+    ground_truth = cat(2, ground_truth{:});%catÓÃÀ´Á¬½Ó¾ØÕó£¬2±íÊ¾ĞÂÁ¬½ÓµÄ¾ØÕóÎª¶şÎ¬£¬¼´ĞĞÊıºÍÁĞÊıÎªËùÒªÁ¬½Ó¾ØÕóµÄĞĞÊıºÍÁĞÊı
 	fclose(f);                              
                                             
 	%set initial position and size
-	target_sz = [ground_truth(1,4), ground_truth(1,3)];%ç›®æ ‡åŒºåŸŸçš„[height, width]
-	pos = [ground_truth(1,2), ground_truth(1,1)] + floor(target_sz/2);%posä¸ºç¬¬ä¸€å¸§ä¸­ç›®æ ‡åŒºåŸŸä¸­å¿ƒç‚¹ä½ç½®[y,x]ï¼Œfloorå‘è´Ÿæ— ç©·å¤§æ–¹å‘å–æ•´,
-                                                                      %yä¸xæ˜¯å¯¹æ•´å¼ å›¾ç‰‡æ¥è¯´çš„åæ ‡å€¼
+	target_sz = [ground_truth(1,4), ground_truth(1,3)];%Ä¿±êÇøÓòµÄ[height, width]
+	pos = [ground_truth(1,2), ground_truth(1,1)] + floor(target_sz/2);%posÎªµÚÒ»Ö¡ÖĞÄ¿±êÇøÓòÖĞĞÄµãÎ»ÖÃ[y,x]£¬floorÏò¸ºÎŞÇî´ó·½ÏòÈ¡Õû,
+                                                                      %yÓëxÊÇ¶ÔÕûÕÅÍ¼Æ¬À´ËµµÄ×ø±êÖµ
 	
 	%interpolate missing annotations, and store positions instead of boxes
-    %æ’å…¥ç¼ºå°‘çš„æ³¨é‡Šï¼ŒåŒæ—¶ä¿å­˜ä½ç½®è€Œä¸æ˜¯ç›’å­ã€‚
+    %²åÈëÈ±ÉÙµÄ×¢ÊÍ£¬Í¬Ê±±£´æÎ»ÖÃ¶ø²»ÊÇºĞ×Ó¡£
 	try
 		ground_truth = interp1(1 : 5 : size(ground_truth,1), ground_truth(1:5:end,:), 1:size(ground_truth,1));
-                                     %æ’å€¼yi=interp1(x,y,xi,'method'),å…¶ä¸­xï¼Œyä¸ºæ’å€¼ç‚¹ï¼Œyiä¸ºåœ¨è¢«æ’å€¼ç‚¹xiå¤„çš„æ’å€¼ç»“æœï¼›x,yä¸ºå‘é‡ï¼Œmethodç¼ºçœä¸ºçº¿æ€§æ’å€¼
-                                     %size(A,1)å–Açš„è¡Œæ•°ï¼Œsize(A,2)å–Açš„åˆ—æ•°ï¼Œsize(A)å–Açš„è¡Œåˆ—æ•°
-		ground_truth = ground_truth(:,[2,1]) + ground_truth(:,[4,3]) / 2; %ground_truthä¸ºæ‰€æœ‰å¸§ä¸Šç›®æ ‡åŒºåŸŸä¸­å¿ƒç‚¹ä½ç½®åæ ‡[y, x]
+                                     %²åÖµyi=interp1(x,y,xi,'method'),ÆäÖĞx£¬yÎª²åÖµµã£¬yiÎªÔÚ±»²åÖµµãxi´¦µÄ²åÖµ½á¹û£»x,yÎªÏòÁ¿£¬methodÈ±Ê¡ÎªÏßĞÔ²åÖµ
+                                     %size(A,1)È¡AµÄĞĞÊı£¬size(A,2)È¡AµÄÁĞÊı£¬size(A)È¡AµÄĞĞÁĞÊı
+		ground_truth = ground_truth(:,[2,1]) + ground_truth(:,[4,3]) / 2; %ground_truthÎªËùÓĞÖ¡ÉÏÄ¿±êÇøÓòÖĞĞÄµãÎ»ÖÃ×ø±ê[y, x]
 	catch  %, wrong format or we just don't have ground truth data.
 		ground_truth = [];
 	end
@@ -44,8 +44,8 @@ function [img_files, pos, target_sz, resize_image, ground_truth, video_path] = l
 	%list all frames. first, try MILTrack's format, where the initial and
 	%final frame numbers are stored in a text file. if it doesn't work,
 	%try to load all jpg/jpg files in the folder.
-%% å®˜æ–¹æºä»£ç çš„ list all frames	
-	text_files = dir([video_path '*_frames.txt']);%*_frame.txtæ˜¯ç¬¬ä¸€å¸§å›¾åƒçš„åå­—åºå·ä¸æœ€åä¸€å¸§å›¾åƒåå­—åºå·ã€‚
+%% ¹Ù·½Ô´´úÂëµÄ list all frames	
+	text_files = dir([video_path '*_frames.txt']);%*_frame.txtÊÇµÚÒ»Ö¡Í¼ÏñµÄÃû×ÖĞòºÅÓë×îºóÒ»Ö¡Í¼ÏñÃû×ÖĞòºÅ¡£
 	if ~isempty(text_files)
 		f = fopen([video_path text_files(1).name]);
 		frames = textscan(f, '%f,%f');
@@ -63,16 +63,16 @@ function [img_files, pos, target_sz, resize_image, ground_truth, video_path] = l
 		img_files = cellstr(img_files);
 	else
 		%no text file, just list all images
-		img_files = dir([video_path '*.jpg']); %åœ¨å½“å‰folderä¸­å¯»æ‰¾jpgå›¾ç‰‡
+		img_files = dir([video_path '*.jpg']); %ÔÚµ±Ç°folderÖĞÑ°ÕÒjpgÍ¼Æ¬
 		if isempty(img_files)
-            video_path = [video_path 'img/']; %è‹¥åœ¨å½“å‰folderä¸­æ²¡æœ‰jpgå›¾ç‰‡ï¼Œè¿›å…¥å½“å‰folderçš„subfolderçš„imgä¸­å¯»æ‰¾jpgå›¾ç‰‡
+            video_path = [video_path 'img/']; %ÈôÔÚµ±Ç°folderÖĞÃ»ÓĞjpgÍ¼Æ¬£¬½øÈëµ±Ç°folderµÄsubfolderµÄimgÖĞÑ°ÕÒjpgÍ¼Æ¬
 			img_files = dir([video_path '*.jpg']);
-			assert(~isempty(img_files), 'No image files to load.') %è‹¥åœ¨imgè¿™ä¸ªsubfolderä¸­ä¹Ÿæ²¡æœ‰jpgæ–‡ä»¶ï¼Œå¼¹å‡ºæŠ¥é”™ä¿¡æ¯
+			assert(~isempty(img_files), 'No image files to load.') %ÈôÔÚimgÕâ¸ösubfolderÖĞÒ²Ã»ÓĞjpgÎÄ¼ş£¬µ¯³ö±¨´íĞÅÏ¢
 		end
-		img_files = sort({img_files.name});%sort(A)è‹¥Aæ˜¯å‘é‡ä¸ç®¡æ˜¯åˆ—è¿˜æ˜¯è¡Œå‘é‡ï¼Œé»˜è®¤éƒ½æ˜¯å¯¹Aè¿›è¡Œå‡åºæ’åˆ—ã€‚sort(A,'descend')æ˜¯é™åºæ’åºã€‚
+		img_files = sort({img_files.name});%sort(A)ÈôAÊÇÏòÁ¿²»¹ÜÊÇÁĞ»¹ÊÇĞĞÏòÁ¿£¬Ä¬ÈÏ¶¼ÊÇ¶ÔA½øĞĞÉıĞòÅÅÁĞ¡£sort(A,'descend')ÊÇ½µĞòÅÅĞò¡£
 	end
-%% è‡ªå·±å†™è¿‡çš„çš„list all framesï¼Œé€šç”¨æ€§ä¸å¦‚å®˜æ–¹ä»£ç 
-%     startFrame = 1; %å½“å›¾åƒåºå·ä¸æ˜¯ä»0001å¼€å§‹(BlurCar1æ•°æ®é›†å°±æ˜¯è¿™æ ·ï¼Œä»0247.jpgå¼€å§‹)ï¼Œåªéœ€å°†startFrameæ”¹ä¸ºèµ·å§‹å¸§å°±è¡Œ(å¦‚BlurCarä¸ºstartFrame = 247)
+%% ×Ô¼ºĞ´¹ıµÄµÄlist all frames£¬Í¨ÓÃĞÔ²»Èç¹Ù·½´úÂë
+%     startFrame = 1; %µ±Í¼ÏñĞòºÅ²»ÊÇ´Ó0001¿ªÊ¼(BlurCar1Êı¾İ¼¯¾ÍÊÇÕâÑù£¬´Ó0247.jpg¿ªÊ¼)£¬Ö»Ğè½«startFrame¸ÄÎªÆğÊ¼Ö¡¾ÍĞĞ(ÈçBlurCarÎªstartFrame = 247)
 %     endFrame = length(ground_truth) + startFrame - 1;
 %
 %     if exist([video_path num2str(startFrame, 'img/%04i.jpg')], 'file')
@@ -86,9 +86,9 @@ function [img_files, pos, target_sz, resize_image, ground_truth, video_path] = l
 %     img_files = cellstr(img_files);
 %%
     %if the target is too large, use a lower resolution - no need for so
-    %å¦‚æœå›¾ç‰‡å¤ªå¤§ï¼Œä½¿ç”¨è¾ƒä½åˆ†è¾¨ç‡ - ä¸éœ€è¦è¿™æ ·(åœ¨æˆ‘ä»¬è¿è¡Œçš„æ•°æ®é›†ä¸Šå›¾åƒéƒ½å¾ˆå°)
+    %Èç¹ûÍ¼Æ¬Ì«´ó£¬Ê¹ÓÃ½ÏµÍ·Ö±æÂÊ - ²»ĞèÒªÕâÑù(ÔÚÎÒÃÇÔËĞĞµÄÊı¾İ¼¯ÉÏÍ¼Ïñ¶¼ºÜĞ¡)
 	%much detail
-	if sqrt(prod(target_sz)) >= 100 %prod(target_sz)è¿”å›target_szå‘é‡çš„å„å…ƒç´ çš„ä¹˜ç§¯ã€‚ã€‚target_szä¸ºç¬¬ä¸€å¸§å›¾åƒä¸­ç›®æ ‡åŒºåŸŸçš„çš„[height, width]
+	if sqrt(prod(target_sz)) >= 100 %prod(target_sz)·µ»Øtarget_szÏòÁ¿µÄ¸÷ÔªËØµÄ³Ë»ı¡£¡£target_szÎªµÚÒ»Ö¡Í¼ÏñÖĞÄ¿±êÇøÓòµÄµÄ[height, width]
 		pos = floor(pos / 2);
 		target_sz = floor(target_sz / 2);
 		resize_image = true;

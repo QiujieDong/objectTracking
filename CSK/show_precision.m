@@ -7,7 +7,7 @@ function show_precision(positions, ground_truth, title)
 %   Accepts positions and ground truth as Nx2 matrices (for N frames), and
 %   a title string.
 %
-%   Joï¿½o F. Henriques, 2012
+%   Jo?o F. Henriques, 2012
 %   http://www.isr.uc.pt/~henriques/
 
 	
@@ -28,7 +28,7 @@ function show_precision(positions, ground_truth, title)
 	%compute precisions
 	precisions = zeros(max_threshold, 1);
 	for p = 1:max_threshold
-		precisions(p) = nnz(distances < p) / numel(distances);% nnz(x):è¿”å›žçŸ©é˜µXä¸­çš„éžé›¶å…ƒç´ çš„æ•°ç›®;nnz(X)/prod(size(X)):ç¨€ç–çŸ©é˜µçš„å¯†åº¦æ˜¯
+		precisions(p) = nnz(distances < p) / numel(distances);% nnz(x):·µ»Ø¾ØÕóXÖÐµÄ·ÇÁãÔªËØµÄÊýÄ¿;nnz(X)/prod(size(X)):Ï¡Êè¾ØÕóµÄÃÜ¶ÈÊÇ
 	end
 	
 	%plot the precisions

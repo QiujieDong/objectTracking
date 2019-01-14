@@ -3,7 +3,7 @@
 %
 %  Main script for tracking, with a gaussian kernel.
 %
-%  Joï¿½o F. Henriques, 2012
+%  Jo?o F. Henriques, 2012
 %  http://www.isr.uc.pt/~henriques/
 
 clear ;clc
@@ -11,41 +11,41 @@ clear ;clc
 base_path = '/home/qiujiedong/project/MatLAB_workspace/configSeqs/OTB-100';
 
 
-%parameters according to the paper:è®ºæ–‡4.4èŠ‚ç¬¬å››æ®µ
+%parameters according to the paper:ÂÛÎÄ4.4½ÚµÚËÄ¶Î
 padding = 1;					%extra area surrounding the target
 output_sigma_factor = 1/16;		%spatial bandwidth (proportional to target)
 sigma = 0.2;					%gaussian kernel bandwidth
 lambda = 1e-2;					%regularization
-interp_factor = 0.075;			%linear interpolation factor for adaptation:è®ºæ–‡4.3èŠ‚ç¬¬äºŒæ®µæåˆ°ä½¿ç”¨çº¿æ€§æ’å€¼æ³•,...
-                                %å°†æ–°å‚æ•°ä¸å‰ä¸€å¸§å‚æ•°é›†åˆèµ·æ¥é›†æˆæ–°æ¨¡å‹,ä½¿æ¨¡å‹å…·æœ‰è®°å¿†åŠŸèƒ½ã€‚
+interp_factor = 0.075;			%linear interpolation factor for adaptation:ÂÛÎÄ4.3½ÚµÚ¶ş¶ÎÌáµ½Ê¹ÓÃÏßĞÔ²åÖµ·¨,...
+                                %½«ĞÂ²ÎÊıÓëÇ°Ò»Ö¡²ÎÊı¼¯ºÏÆğÀ´¼¯³ÉĞÂÄ£ĞÍ,Ê¹Ä£ĞÍ¾ßÓĞ¼ÇÒä¹¦ÄÜ¡£
 
 
 
 %notation: variables ending with f are in the frequency domain.
-%è¡¨ç¤ºæ³•ï¼šä»¥fä¸ºç»“å°¾çš„å˜é‡åœ¨é¢‘åŸŸä¸­ã€‚
+%±íÊ¾·¨£ºÒÔfÎª½áÎ²µÄ±äÁ¿ÔÚÆµÓòÖĞ¡£
 
 %ask the user for the video
 video_path = choose_video(base_path);
 if isempty(video_path) %user cancelled
     return
 end  
-[img_files, pos, target_sz, resize_image, ground_truth, video_path] = load_video_info(video_path);%å¾—åˆ°:æ‰€æœ‰å›¾åƒ;ç¬¬ä¸€å¸§ç›®æ ‡åŒºåŸŸä¸­å¿ƒç‚¹åæ ‡ä½ç½®;
-                                                                                                  %ç›®æ ‡åŒºåŸŸçš„[hright, width];æ˜¯å¦é™ä½å›¾åƒåˆ†è¾¨ç‡;
-                                                                                                  %åœ¨æ¯ä¸€å¸§ç›®æ ‡åŒºåŸŸå®é™…ä¸­å¿ƒç‚¹åæ ‡;å›¾åƒæ‰€åœ¨åœ°å€
+[img_files, pos, target_sz, resize_image, ground_truth, video_path] = load_video_info(video_path);%µÃµ½:ËùÓĞÍ¼Ïñ;µÚÒ»Ö¡Ä¿±êÇøÓòÖĞĞÄµã×ø±êÎ»ÖÃ;
+                                                                                                  %Ä¿±êÇøÓòµÄ[hright, width];ÊÇ·ñ½µµÍÍ¼Ïñ·Ö±æÂÊ;
+                                                                                                  %ÔÚÃ¿Ò»Ö¡Ä¿±êÇøÓòÊµ¼ÊÖĞĞÄµã×ø±ê;Í¼ÏñËùÔÚµØÖ·
 
 
 %window size, taking padding into account
-sz = floor(target_sz * (1 + padding));%å°†ç›®æ ‡åŒºåŸŸæ‰©å¤§ä¸€å€ä½œä¸ºæˆªå–åŒºåŸŸï¼Œå³æˆªå–ç›®æ ‡åŒºåŸŸå¤§å°[height, width]
-                                      %è¿™æ ·ç›®æ ‡åŒºåŸŸä¸æˆªå–åŒºåŸŸçš„ä¸­å¿ƒç‚¹ä½ç½®åæ ‡æ˜¯ä¸€æ ·çš„ï¼Œå‡ä¸ºpos
+sz = floor(target_sz * (1 + padding));%½«Ä¿±êÇøÓòÀ©´óÒ»±¶×÷Îª½ØÈ¡ÇøÓò£¬¼´½ØÈ¡Ä¿±êÇøÓò´óĞ¡[height, width]
+                                      %ÕâÑùÄ¿±êÇøÓòÓë½ØÈ¡ÇøÓòµÄÖĞĞÄµãÎ»ÖÃ×ø±êÊÇÒ»ÑùµÄ£¬¾ùÎªpos
 
-%desired output (gaussian shaped), bandwidth proportional(æˆæ¯”ä¾‹) to target_size
-output_sigma = sqrt(prod(target_sz)) * output_sigma_factor; %è®ºæ–‡ä¸­4.4èŠ‚ç¬¬å››æ®µå¼å­
+%desired output (gaussian shaped), bandwidth proportional(³É±ÈÀı) to target_size
+output_sigma = sqrt(prod(target_sz)) * output_sigma_factor; %ÂÛÎÄÖĞ4.4½ÚµÚËÄ¶ÎÊ½×Ó
 [rs, cs] = ndgrid((1:sz(1)) - floor(sz(1)/2), (1:sz(2)) - floor(sz(2)/2));
-y = exp(-0.5 / output_sigma^2 * (rs.^2 + cs.^2));%äºŒç»´é«˜æ–¯å…¬å¼,(x-x0)å°±æ˜¯ä¸Šé¢è¿™ä¸€æ­¥ä¸­çš„((1:sz(1))-floor(sz(1)/2))ï¼Œè¿™é‡Œçš„å¯¹äºxä¸yæ–¹å·®ä»å–ä¸€æ ·å€¼
-yf = fft2(y); %äºŒç»´å‚…é‡Œå¶å˜æ¢
+y = exp(-0.5 / output_sigma^2 * (rs.^2 + cs.^2));%¶şÎ¬¸ßË¹¹«Ê½,(x-x0)¾ÍÊÇÉÏÃæÕâÒ»²½ÖĞµÄ((1:sz(1))-floor(sz(1)/2))£¬ÕâÀïµÄ¶ÔÓÚxÓëy·½²îÈÔÈ¡Ò»ÑùÖµ
+yf = fft2(y); %¶şÎ¬¸µÀïÒ¶±ä»»
 
 %store pre-computed cosine window
-cos_window = hann(sz(1)) * hann(sz(2))';%åˆ†åˆ«è·å¾—é•¿åº¦ä¸ºsz(1)å’Œsz(2)çš„çª—å‡½æ•°ï¼Œå†åˆ†åˆ«ç›¸ä¹˜ï¼Œå¾—åˆ°çš„cos_windowsçŸ©é˜µä¸ºsz(1)è¡Œsz(2)åˆ—
+cos_window = hann(sz(1)) * hann(sz(2))';%·Ö±ğ»ñµÃ³¤¶ÈÎªsz(1)ºÍsz(2)µÄ´°º¯Êı£¬ÔÙ·Ö±ğÏà³Ë£¬µÃµ½µÄcos_windows¾ØÕóÎªsz(1)ĞĞsz(2)ÁĞ
 
 
 time = 0;  %to calculate FPS
@@ -56,19 +56,19 @@ for frame = 1:numel(img_files)
 	im = imread([video_path img_files{frame}]);
 	
     if size(im,3) > 1 
-		im = rgb2gray(im); %å˜ä¸ºç°åº¦å›¾åƒ
+		im = rgb2gray(im); %±äÎª»Ò¶ÈÍ¼Ïñ
     end
     
-    if resize_image %imresize ä½¿ç”¨åŒä¸‰æ¬¡æ–¹æ’å€¼æ–¹æ³•å®ç°çš„å›¾ç‰‡ç¼©æ”¾ã€‚
+    if resize_image %imresize Ê¹ÓÃË«Èı´Î·½²åÖµ·½·¨ÊµÏÖµÄÍ¼Æ¬Ëõ·Å¡£
 		im = imresize(im, 0.5);
     end
 	tic()
 	%extract and pre-process subwindow
-	x = get_subwindow(im, pos, sz, cos_window);%åŠ çª—åå›¾åƒ
+	x = get_subwindow(im, pos, sz, cos_window);%¼Ó´°ºóÍ¼Ïñ
 	
 	if frame > 1
-		%calculate(è®¡ç®—) response of the classifier at all locations
-		k = dense_gauss_kernel(sigma, x, z);%xä¸ºå½“å‰å¸§å›¾åƒï¼Œzä¸ºä¸Šä¸€å¸§å›¾åƒ
+		%calculate(¼ÆËã) response of the classifier at all locations
+		k = dense_gauss_kernel(sigma, x, z);%xÎªµ±Ç°Ö¡Í¼Ïñ£¬zÎªÉÏÒ»Ö¡Í¼Ïñ
 		response = real(ifft2(alphaf .* fft2(k)));   %(Eq. 9) Fast detection
 		
 		%target location is at the maximum response
@@ -89,24 +89,24 @@ for frame = 1:numel(img_files)
 		z = x;
 	else
 		%subsequent frames, interpolate model
-		alphaf = (1 - interp_factor) * alphaf + interp_factor * new_alphaf;%å°†æ–°å‚æ•°ä¸å‰ä¸€å¸§å‚æ•°é›†åˆèµ·æ¥é›†æˆæ–°æ¨¡å‹,ä½¿æ¨¡å‹å…·æœ‰è®°å¿†åŠŸèƒ½ã€‚
+		alphaf = (1 - interp_factor) * alphaf + interp_factor * new_alphaf;%½«ĞÂ²ÎÊıÓëÇ°Ò»Ö¡²ÎÊı¼¯ºÏÆğÀ´¼¯³ÉĞÂÄ£ĞÍ,Ê¹Ä£ĞÍ¾ßÓĞ¼ÇÒä¹¦ÄÜ¡£
 		z = (1 - interp_factor) * z + interp_factor * new_z;
 	end
 	
 	%save position and calculate FPS
-	positions(frame,:) = pos; %ä¿å­˜æ±‚å‡ºçš„æ‰€æœ‰å¸§ä¸Šç›®æ ‡åŒºåŸŸä¸­å¿ƒç‚¹åæ ‡
-	time = time + toc();  %ç¡®ä¿æ—¶é—´è®¡ç®—åªæœ‰è·Ÿè¸ªæ–¹é¢ï¼Œå…¶ä»–æ•°æ®å¤„ç†æ–¹é¢ä¸ç®—åœ¨æ—¶é—´å†…
+	positions(frame,:) = pos; %±£´æÇó³öµÄËùÓĞÖ¡ÉÏÄ¿±êÇøÓòÖĞĞÄµã×ø±ê
+	time = time + toc();  %È·±£Ê±¼ä¼ÆËãÖ»ÓĞ¸ú×Ù·½Ãæ£¬ÆäËûÊı¾İ´¦Àí·½Ãæ²»ËãÔÚÊ±¼äÄÚ
 	
 	%visualization
-	rect_position = [pos([2,1]) - target_sz([2,1])/2, target_sz([2,1])];%è·Ÿè¸ªåˆ°çš„ç›®æ ‡åŒºåŸŸçš„[x, y, width, height]
+	rect_position = [pos([2,1]) - target_sz([2,1])/2, target_sz([2,1])];%¸ú×Ùµ½µÄÄ¿±êÇøÓòµÄ[x, y, width, height]
 	if frame == 1  %first frame, create GUI
 		figure( 'Name',['Tracker - ' video_path])
-		im_handle = imshow(im, 'Border','tight', 'InitialMag',200);%Borderå›¾çª—çª—å£è¾¹æ¡†ç©ºé—´,'tight' æ—¶ï¼Œå›¾çª—çª—å£ä¸åŒ…å«å›¾çª—ä¸­çš„å›¾åƒå‘¨å›´çš„ä»»ä½•ç©ºé—´;
-                                                                   %InitialMagnificationå›¾åƒæ˜¾ç¤ºçš„åˆå§‹æ”¾å¤§å€ç‡
+		im_handle = imshow(im, 'Border','tight', 'InitialMag',200);%BorderÍ¼´°´°¿Ú±ß¿ò¿Õ¼ä,'tight' Ê±£¬Í¼´°´°¿Ú²»°üº¬Í¼´°ÖĞµÄÍ¼ÏñÖÜÎ§µÄÈÎºÎ¿Õ¼ä;
+                                                                   %InitialMagnificationÍ¼ÏñÏÔÊ¾µÄ³õÊ¼·Å´ó±¶ÂÊ
 		rect_handle = rectangle('Position',rect_position, 'EdgeColor','g');
 	else
 		try  %subsequent frames, update GUI
-			set(im_handle, 'CData', im) %CDataæ˜¯MATLABé‡Œå­˜æ”¾å›¾åƒæ•°æ®çš„ä¸€ä¸ªçŸ©é˜µ
+			set(im_handle, 'CData', im) %CDataÊÇMATLABÀï´æ·ÅÍ¼ÏñÊı¾İµÄÒ»¸ö¾ØÕó
 			set(rect_handle, 'Position', rect_position)
 		catch  %, user has closed the window
 			return

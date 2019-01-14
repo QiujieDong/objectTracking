@@ -8,14 +8,14 @@ function out = get_subwindow(im, pos, sz, cos_window)
 %   cosine window COS_WINDOW is applied (though this part could be omitted
 %   to make the function more general).
 %
-%   Joï¿½o F. Henriques, 2012
+%   Jo?o F. Henriques, 2012
 %   http://www.isr.uc.pt/~henriques/
 
-	if isscalar(sz)  %square sub-window :isscalaråˆ¤æ–­szæ˜¯å¦æ˜¯æ ‡é‡,å³ä¸€è¡Œä¸€åˆ—çš„çŸ©é˜µ.
+	if isscalar(sz)  %square sub-window :isscalarÅĞ¶ÏszÊÇ·ñÊÇ±êÁ¿,¼´Ò»ĞĞÒ»ÁĞµÄ¾ØÕó.
 		sz = [sz, sz];
 	end
 	
-	xs = floor(pos(2)) + (1:sz(2)) - floor(sz(2)/2); %å¾—å‡ºæˆªå–åŒºåŸŸç›¸å¯¹ä¸æ•´å¼ å›¾ç‰‡çš„åæ ‡å€¼
+	xs = floor(pos(2)) + (1:sz(2)) - floor(sz(2)/2); %µÃ³ö½ØÈ¡ÇøÓòÏà¶ÔÓëÕûÕÅÍ¼Æ¬µÄ×ø±êÖµ
 	ys = floor(pos(1)) + (1:sz(1)) - floor(sz(1)/2);
 	
 	%check for out-of-bounds coordinates, and set them to the values at
@@ -26,7 +26,7 @@ function out = get_subwindow(im, pos, sz, cos_window)
 	ys(ys > size(im,1)) = size(im,1);
 	
 	%extract image
-	out = im(ys, xs, :); %outçš„æ¯ä¸€ä¸ªå€¼éƒ½æ˜¯ç›¸åº”ä½ç½®çš„åƒç´ å€¼ï¼Œåƒç´ å€¼çš„èŒƒå›´ä¸º0-255
+	out = im(ys, xs, :); %outµÄÃ¿Ò»¸öÖµ¶¼ÊÇÏàÓ¦Î»ÖÃµÄÏñËØÖµ£¬ÏñËØÖµµÄ·¶Î§Îª0-255
 	
 	%pre-process window
 	out = double(out) / 255 - 0.5;  %normalize to range -0.5 .. 0.5
