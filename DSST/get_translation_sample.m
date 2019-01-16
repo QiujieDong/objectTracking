@@ -33,7 +33,7 @@ ys(ys > size(im,1)) = size(im,1);
 im_patch = im(ys, xs, :);
 
 % resize image to model size
-im_patch = imresize(im_patch, model_sz);%将im_patch进行imresize，与model_sz的维度一致，若im_patch小，则imresize对其进行zero-padding
+im_patch = imresize(im_patch, model_sz);%将im_patch进行imresize，与model_sz的维度一致
 
 % compute feature map
 out = get_feature_map(im_patch);
