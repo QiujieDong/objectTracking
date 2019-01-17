@@ -20,6 +20,8 @@
 
 - **fDSST**: Martin Danelljan, Gustav Häger, Fahad Khan, Michael Felsberg. "Discriminative Scale Space Tracking", TPAMI (2017). [[paper]](http://www.cvl.isy.liu.se/en/research/objrec/visualtracking/scalvistrack/DSST_TPAMI.pdf)[[project]](http://www.cvl.isy.liu.se/en/research/objrec/visualtracking/scalvistrack/index.html)
 
+- **SAMF**：Solis Montero, Andres, Jochen Lang, Robert Laganiere. "Scalable Kernel Correlation Filter with Sparse Feature Integration",ICCV workshop (2015).[[paper]](https://github.com/ihpdep/ihpdep.github.io/raw/master/papers/eccvw14_samf.pdf)[[github]](https://github.com/ihpdep/samf) 
+
 # Visual Tracker Benchmark && Datasets
 - **OTB2013**：Wu Yi, Jongwoo Lim, Ming-Hsuan Yang. "Online Object Tracking: A Benchmark", CVPR (2013). [[paper]](http://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf)
 
