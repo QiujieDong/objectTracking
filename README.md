@@ -14,6 +14,8 @@
 
 - **CN**: Martin Danelljan, Fahad Shahbaz Khan, Michael Felsberg ,Joost van de Weijer. "Adaptive Color Attributes for Real-Time Visual Tracking", CVPR (2014).[[paper]](http://www.cvl.isy.liu.se/research/objrec/visualtracking/colvistrack/CN_Tracking_CVPR14.pdf)[[project]](http://www.cvl.isy.liu.se/research/objrec/visualtracking/colvistrack/index.html)
 
+- **STC**: Kaihua Zhang, Lei Zhang, Ming-Hsuan Yang, David Zhang. "Fast Tracking via Spatio-Temporal Context Learning", ECCV (2014).[[paper]](http://arxiv.org/pdf/1311.1939v1.pdf)[[project]](http://www4.comp.polyu.edu.hk/~cslzhang/STC/STC.htm)
+
 - **DSST**： Martin Danelljan, Gustav Häger, Fahad Shahbaz Khan and Michael Felsberg. "Accurate Scale Estimation for Robust Visual Tracking", BMVC (2014).[[paper]](http://www.cvl.isy.liu.se/en/research/objrec/visualtracking/scalvistrack/ScaleTracking_BMVC14.pdf)[[project]](http://www.cvl.isy.liu.se/en/research/objrec/visualtracking/scalvistrack/index.html)
 
 - **fDSST**: Martin Danelljan, Gustav Häger, Fahad Khan, Michael Felsberg. "Discriminative Scale Space Tracking", TPAMI (2017). [[paper]](http://www.cvl.isy.liu.se/en/research/objrec/visualtracking/scalvistrack/DSST_TPAMI.pdf)[[project]](http://www.cvl.isy.liu.se/en/research/objrec/visualtracking/scalvistrack/index.html)
