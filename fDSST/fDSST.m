@@ -131,7 +131,7 @@ for frame = 1:num_frames
                 responsef = resizeDFT2(responsef, interp_sz);
             end
             
-            response = ifft2(responsef, 'symmetric');%(symmetric对称)
+            response = ifft2(responsef, 'symmetric');%symmetric-对称，这样进行ifft后生成的矩阵是实数矩阵。
             
             [row, col] = find(response == max(response(:)), 1);
             disp_row = mod(row - 1 + floor((interp_sz(1)-1)/2), interp_sz(1)) - floor((interp_sz(1)-1)/2);
