@@ -35,8 +35,8 @@ function x = get_features(im, features, cell_size, cos_window,w2c)
 		out_npca = get_feature_map(im_patch, 'gray', w2c);
 		out_pca = get_feature_map(im_patch, 'cn', w2c);
 % 		out_pca = reshape(temp_pca, [prod(sz), size(temp_pca, 3)]);
-		x = cat(3,x,out_npca);%在第三个维度上串联
-		x=cat(3,x,out_pca);
+		x = cat(3,x,out_npca);%在第三个维度上串联，out_npca为sz(1)*sz(2)*1维
+		x=cat(3,x,out_pca);%out_pca是sz(1)*sz(2)*10.所以最终x为sz(1)*sz(2)*42维
 	end
 	
 	if features.gray

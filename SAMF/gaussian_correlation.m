@@ -16,7 +16,7 @@ function kf = gaussian_correlation(xf, yf, sigma)
 	
 	%cross-correlation term in Fourier domain
 	xyf = xf .* conj(yf);
-	xy = sum(real(ifft2(xyf)), 3);  %to spatial domain
+	xy = sum(real(ifft2(xyf)), 3);  %to spatial domain,在第三维上进行加和
 	
 	%calculate gaussian response for all positions, then go back to the
 	%Fourier domain

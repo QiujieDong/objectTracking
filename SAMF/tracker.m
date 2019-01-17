@@ -39,7 +39,7 @@ function [positions, rect_results, time] = tracker(video_path, img_files, pos, t
 %   http://ihpdep.github.io
 
 
-addpath('./utility');%这里面的函数和mexresize功能一样，这是这样写精确度会高一点。
+addpath('./utility');%这里面的函数处理由于尺度造成的区域不匹配问题，文中提到使用bilinear interpolation(双线性插值)方法。
 temp = load('w2crs');
 w2c = temp.w2crs;
 	%if the target is large, lower the resolution, we don't need that much
@@ -103,13 +103,13 @@ w2c = temp.w2crs;
                 param0 = [pos(2), pos(1), tmp_sz(2)/window_sz(2), 0,...
                         tmp_sz(1)/window_sz(2)/(window_sz(1)/window_sz(2)),0];
                 param0 = affparam2mat(param0); 
-                patch = uint8(warpimg(double(im), param0, window_sz));
-                zf = fft2(get_features(patch, features, cell_size, cos_window,w2c));
+                patch = uint8(warpimg(double(im), param0, window_sz));%这里通过插值处理将图像处理为相同维度。双线性插值方法
+                zf = fft2(get_features(patch, features, cell_size, cos_window,w2c));%输出zf为sz(1)*sz(2)*42维
 
                 %calculate response of the classifier at all shifts
                 switch kernel.type
                 case 'gaussian'
-                    kzf = gaussian_correlation(zf, model_xf, kernel.sigma);
+                    kzf = gaussian_correlation(zf, model_xf, kernel.sigma);%输出kzf变为sz(1)*sz(2)维
                 case 'polynomial'
                     kzf = polynomial_correlation(zf, model_xf, kernel.poly_a, kernel.poly_b);
                 case 'linear'
