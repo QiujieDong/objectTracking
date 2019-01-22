@@ -22,6 +22,8 @@
 
 - **SAMF**：Solis Montero, Andres, Jochen Lang, Robert Laganiere. "Scalable Kernel Correlation Filter with Sparse Feature Integration",ICCV workshop (2015).[[paper]](https://github.com/ihpdep/ihpdep.github.io/raw/master/papers/eccvw14_samf.pdf)[[github]](https://github.com/ihpdep/samf) 
 
+- **Staple**:Luca Bertinetto, Jack Valmadre, Stuart Golodetz, Ondrej Miksik, Philip H.S. Torr. "Staple: Complementary Learners for Real-Time Tracking", CVPR (2016). [[paper]](https://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Bertinetto_Staple_Complementary_Learners_CVPR_2016_paper.html)[[project]](http://www.robots.ox.ac.uk/~luca/staple.html)[[github]](https://github.com/bertinetto/staple)
+
 # Visual Tracker Benchmark && Datasets
 - **OTB2013**：Wu Yi, Jongwoo Lim, Ming-Hsuan Yang. "Online Object Tracking: A Benchmark", CVPR (2013). [[paper]](http://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf)
 
