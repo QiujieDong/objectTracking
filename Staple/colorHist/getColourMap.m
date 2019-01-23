@@ -9,9 +9,8 @@ function [P_O] = getColourMap(patch, bg_hist, fg_hist, n_bins, grayscale_sequenc
     % to which bin each pixel (for all d channels) belongs to
     bin_indices = floor(patch_array/bin_width) + 1;
     % Get pixel-wise posteriors (PwP)
-    P_bg = getP(bg_hist, h, w, bin_indices, grayscale_sequence);%将当前帧在第一帧的bg_hist与fg_hist中取得颜色直方图取得的分数
+    P_bg = getP(bg_hist, h, w, bin_indices, grayscale_sequence);%将当前帧在上一帧的bg_hist与fg_hist中取得颜色直方图取得的分数
     P_fg = getP(fg_hist, h, w, bin_indices, grayscale_sequence);
-
-    % Object-likelihood map
+    
     P_O = P_fg ./ (P_fg + P_bg);%前景所占比例
 end

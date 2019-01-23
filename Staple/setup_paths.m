@@ -30,5 +30,8 @@ function setup_paths()
     
     % resopnse
     addpath(genpath([pathstr '/response/']));
+    
+    %visualizationDbg
+    addpath(genpath([pathstr '/visualizationDbg/']));
 end
 

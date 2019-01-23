@@ -145,7 +145,7 @@ function [results] = trackerMain(p, im, bg_area, fg_area, area_resize_factor)
 
             if p.visualization_dbg==1 %输出各个提取的特征，比较直观
                 mySubplot(2,1,5,1,im_patch_cf,'FG+BG','gray');
-                mySubplot(2,1,5,2,likelihood_map,'obj.likelihood','parula');
+                mySubplot(2,1,5,2,likelihood_map,'obj.likelihood','parula');%parula是MATLAB中的一种色标，画图使用parula色标来上色
                 mySubplot(2,1,5,3,response_cf,'CF response','parula');
                 mySubplot(2,1,5,4,response_pwp,'center likelihood','parula');
                 mySubplot(2,1,5,5,response,'merged response','parula');
