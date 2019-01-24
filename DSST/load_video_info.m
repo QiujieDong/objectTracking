@@ -22,9 +22,9 @@ function [img_files, pos, target_sz, ground_truth, video_path] = load_video_info
 
 	%full path to the video's files
 	if base_path(end) ~= '/' && base_path(end) ~= '\'
-		base_path(end+1) = '/';
+		base_path(end+1) = '\';
 	end
-	video_path = [base_path video '/'];
+	video_path = [base_path video '\'];
 
 	%try to load ground truth from text file (Benchmark's format)
 	filename = [video_path 'groundtruth_rect' suffix '.txt'];
@@ -59,7 +59,7 @@ function [img_files, pos, target_sz, ground_truth, video_path] = load_video_info
 	
 	
 	%from now on, work in the subfolder where all the images are
-	video_path = [video_path 'img/'];
+	video_path = [video_path 'img\'];
 	
 	%for these sequences, we must limit ourselves to a range of frames.
 	%for all others, we just load all png/jpg files in the folder.

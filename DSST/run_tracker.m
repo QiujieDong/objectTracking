@@ -17,7 +17,7 @@ params.number_of_scales = 33;           % number of scale levels (denoted "S" in
 params.scale_step = 1.02;               % Scale increment factor (denoted "a" in the paper)
 params.scale_model_max_area = 512;      % the maximum size of scale examples
 
-params.visualization = 1;
+% params.visualization = 1;
 
 %ask the user for the video
 video_name = choose_video(base_path);
@@ -30,7 +30,7 @@ params.wsize = floor(target_sz);
 params.img_files = img_files;
 params.video_path = video_path;
 
-[positions, fps] = dsst(params);
+[positions, fps] = dsst(params, [], 1);
 
 % calculate precisions
 [distance_precision, PASCAL_precision, average_center_location_error] = ...

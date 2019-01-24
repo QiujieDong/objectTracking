@@ -1,4 +1,4 @@
-function [positions, fps] = dsst(params)
+function [positions, fps] = dsst(params, res_path, bSaveImage)
 
 % [positions, fps] = dsst(params)
 
@@ -17,7 +17,7 @@ img_files = params.img_files;
 pos = floor(params.init_pos);
 target_sz = floor(params.wsize);
 
-visualization = params.visualization;
+% visualization = params.visualization;
 
 num_frames = numel(img_files);
 
@@ -163,7 +163,8 @@ for frame = 1:num_frames
     
     
     %visualization
-    if visualization == 1
+%     if visualization == 1
+    if bSaveImage
         rect_position = [pos([2,1]) - target_sz([2,1])/2, target_sz([2,1])];
         if frame == 1  %first frame, create GUI
             figure('Name',['Tracker - ' video_path]);
@@ -179,6 +180,7 @@ for frame = 1:num_frames
             catch
                 return
             end
+%       imwrite(frame2im(getframe(gcf)),[res_path num2str(frame) '.jpg']);
         end
         
         drawnow

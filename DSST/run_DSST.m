@@ -2,7 +2,6 @@ function results=run_DSST(seq, res_path, bSaveImage)
 close all
 
 %add the neccesary paths
-setup_paths;
 
 %% parameters according to the paper
 params.padding = 1.0;         			% extra area surrounding the target

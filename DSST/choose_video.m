@@ -7,7 +7,7 @@ function video_name = choose_video(base_path)
 
 	%process path to make sure it's uniform
 	if ispc(), base_path = strrep(base_path, '\', '/'); end
-	if base_path(end) ~= '/', base_path(end+1) = '/'; end
+	if base_path(end) ~= '\', base_path(end+1) = '\'; end
 	
 	%list all sub-folders
 	contents = dir(base_path);
