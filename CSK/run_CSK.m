@@ -9,7 +9,7 @@ function results=run_CSK(seq, res_path, bSaveImage)
 
 %Reference: 
 %
-%   F. Henriques, R. Caseiro, P. Martins, and J. Batista, “Exploiting the Circulant Structure of Tracking-by-Detection with Kernels,” in ECCV, 2012.
+%   F. Henriques, R. Caseiro, P. Martins, and J. Batista, “Exploiting the Circulant Structure of Tracking-by-Detection with Kernels,? in ECCV, 2012.
 %
 %modified by Yi Wu @ UC Merced, 10/17/2012
 %
@@ -142,7 +142,7 @@ if resize_image, rect_position = rect_position * 2; end
 
 fps = numel(s_frames) / time;
 
-disp(['fps: ' num2str(fps)])
+% disp(['fps: ' num2str(fps)])
 
 results.type = 'rect';
 results.res = rect_position;%each row is a rectangle
