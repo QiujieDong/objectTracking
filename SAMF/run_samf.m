@@ -1,4 +1,4 @@
-function results = run_samf(seq, res_path, bSaveImage)
+function results = run_SAMF(seq, res_path, bSaveImage)
 
 	%default settings
 	video = 'benchmark'; 
@@ -20,7 +20,7 @@ function results = run_samf(seq, res_path, bSaveImage)
 	output_sigma_factor = 0.1;  %spatial bandwidth (proportional to target)
 	
 	switch feature_type
-	case 'gray',
+	case 'gray'
 		interp_factor = 0.075;  %linear interpolation factor for adaptation
 
 		kernel.sigma = 0.2;  %gaussian kernel bandwidth
@@ -31,7 +31,7 @@ function results = run_samf(seq, res_path, bSaveImage)
 		features.gray = true;
 		cell_size = 1;
 		
-	case 'hog',
+	case 'hog'
 		interp_factor = 0.015;%0.02
 		
 		kernel.sigma = 0.5;
@@ -42,7 +42,7 @@ function results = run_samf(seq, res_path, bSaveImage)
 		features.hog = true;
 		features.hog_orientations = 9;
 		cell_size = 4;
-	case 'hogcolor',
+	case 'hogcolor'
 		interp_factor = 0.01;
 		
 		kernel.sigma = 0.5;
