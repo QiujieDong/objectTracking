@@ -36,3 +36,4 @@ results.fps = fps;
 
 %show the precisions plot
 % show_precision(positions, ground_truth, video_path)
+end

@@ -18,7 +18,7 @@ params.non_compressed_features = {'gray'}; % features that are not compressed(压
 params.compressed_features = {'cn'};       % features that are compressed, a cell with strings (possible choices: 'gray', 'cn')
 params.num_compressed_dim = 2;             % the dimensionality of the compressed features
 
-params.visualization = 1;
+% params.visualization = 1;
 
 %ask the user for the video
 video_name = choose_video(base_path);
@@ -30,9 +30,10 @@ params.init_pos = floor(pos) + floor(target_sz/2);%这里将pos换到中心位置
 params.wsize = floor(target_sz);%目标区域大小
 params.img_files = img_files;
 params.video_path = video_path;
-params.video_name = video_name;
+% params.video_name = video_name;
 
-[positions, fps] = color_tracker(params);
+% [positions, fps] = color_tracker(params);
+[positions, fps] = color_tracker(params, [], 1);
 
 % calculate precisions
 %Center Location Error-预测目标中心与ground-truth中心的平均欧几里得距离(越小越好)

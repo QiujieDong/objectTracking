@@ -1,4 +1,4 @@
-function [positions, fps] = color_tracker(params)
+function [positions, fps] = color_tracker(params, res_path, bSaveImage)
 
 % [positions, fps] = color_tracker(params)
 
@@ -14,12 +14,12 @@ compressed_features = params.compressed_features;
 num_compressed_dim = params.num_compressed_dim;
 
 video_path = params.video_path;
-video_name = params.video_name;
+% video_name = params.video_name;
 img_files = params.img_files;
 pos = floor(params.init_pos);
 target_sz = floor(params.wsize);
 
-visualization = params.visualization;
+% visualization = params.visualization;
 
 num_frames = numel(img_files);
 
@@ -152,10 +152,11 @@ for frame = 1:num_frames
     time = time + toc;
     
     %visualization
-    if visualization == 1
+%     if visualization == 1
+    if bSaveImage
         rect_position = [pos([2,1]) - target_sz([2,1])/2, target_sz([2,1])];
         if frame == 1  %first frame, create GUI
-            figure('Name',['Tracker - ' video_name]);
+            figure('Name',['Tracker - ' video_path]);
             im_handle = imshow(uint8(im), 'Border','tight', 'InitialMag', 100 + 100 * (length(im) < 500));
             rect_handle = rectangle('Position',rect_position, 'EdgeColor','g');
             text_handle = text(10, 10, int2str(frame));
@@ -168,6 +169,7 @@ for frame = 1:num_frames
             catch
                 return
             end
+%         imwrite(frame2im(getframe(gcf)),[res_path num2str(frame) '.jpg']); 
         end
         
         drawnow
