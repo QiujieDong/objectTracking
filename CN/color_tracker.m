@@ -68,7 +68,7 @@ for frame = 1:num_frames
         
         % calculate the response of the classifier
         kf = fft2(dense_gauss_kernel(sigma, x, zp));
-        response = real(ifft2(alphaf_num .* kf ./ alphaf_den));
+        response = real(ifft2(alphaf_num .* kf ./ (alphaf_den + eps)));%这里加上eps解决Dudek数据集出现NAN情况。
         
         % target location is at the maximum response
         [row, col] = find(response == max(response(:)), 1);
