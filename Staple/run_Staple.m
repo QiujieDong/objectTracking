@@ -23,8 +23,8 @@ function results = run_Staple(seq, res_path, bSaveImage)
         y = region(2);
         w = region(3);
         h = region(4);
-        cx = x+w/2;
-        cy = y+h/2;
+        cx = x+ w/2;
+        cy = y+ h/2;
     end
 
     % init_pos is the centre of the initial bounding box
