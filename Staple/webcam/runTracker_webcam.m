@@ -1,6 +1,8 @@
 function runTracker_webcam
 % RUN_TRACKER  is the *external* function of the tracker - does configuration and calls THISTRACKER
 
+setup_paths;
+
     %% Read params.txt
     tracker = struct();   
     params = readParams('params.txt');
