@@ -24,6 +24,8 @@
 
 - **Staple**:Luca Bertinetto, Jack Valmadre, Stuart Golodetz, Ondrej Miksik, Philip H.S. Torr. "Staple: Complementary Learners for Real-Time Tracking", CVPR (2016). [[paper]](https://www.cv-foundation.org/openaccess/content_cvpr_2016/html/Bertinetto_Staple_Complementary_Learners_CVPR_2016_paper.html)[[project]](http://www.robots.ox.ac.uk/~luca/staple.html)[[github]](https://github.com/bertinetto/staple)
 
+- **SRDCF**:Martin Danelljan, Gustav Häger, Fahad Khan, Michael Felsberg. "Learning Spatially Regularized Correlation Filters for Visual Tracking", ICCV (2015).[[paper]](https://www.cvl.isy.liu.se/research/objrec/visualtracking/regvistrack/SRDCF_ICCV15.pdf)[[project]](https://www.cvl.isy.liu.se/research/objrec/visualtracking/regvistrack/)
+
 # Visual Tracker Benchmark && Datasets
 - **OTB2013**：Wu Yi, Jongwoo Lim, Ming-Hsuan Yang. "Online Object Tracking: A Benchmark", CVPR (2013). [[paper]](http://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf)
 
