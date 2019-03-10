@@ -7,7 +7,7 @@
 % video_path = 'sequences/Couple';
 % [seq, ~] = load_video_info(video_path);
 % 
-setup_paths();
+% setup_paths();
 
 base_path = 'D:\\objectTracking\\configSeqs\\OTB-100\\';
 video_name = choose_video(base_path);

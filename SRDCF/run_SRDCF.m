@@ -6,6 +6,8 @@ function results=run_SRDCF(seq, res_path, bSaveImage, parameters)
 
 % Default parameters used in the ICCV 2015 paper
 
+% setup_paths();
+
 % HOG feature parameters
 hog_params.nDim = 31;%HOGµÄÌØÕ÷Î¬¶È
 
