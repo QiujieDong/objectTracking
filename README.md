@@ -41,6 +41,7 @@
 
 # Latest research paper
 [dblp:TPAMI](https://dblp.uni-trier.de/db/journals/pami/index.html)
+[arXiv:Computer Vision and Pattern Recognition](https://arxiv.org/list/cs.CV/recent)
 
 # 膜拜大神
 - [Martin Danelljan](http://users.isy.liu.se/cvl/marda26/)-马丁大神
