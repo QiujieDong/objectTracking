@@ -40,8 +40,8 @@
 - **UAV123**：Matthias Mueller, Neil Smith, Bernard Ghanem. "A Benchmark and Simulator for UAV Tracking", ECCV(2016). [[paper]](https://ivul.kaust.edu.sa/Documents/Publications/2016/A%20Benchmark%20and%20Simulator%20for%20UAV%20Tracking.pdf) [[project]](https://ivul.kaust.edu.sa/Pages/pub-benchmark-simulator-uav.aspx)
 
 # Latest research paper
-[dblp:TPAMI](https://dblp.uni-trier.de/db/journals/pami/index.html)
-[arXiv:Computer Vision and Pattern Recognition](https://arxiv.org/list/cs.CV/recent)
+- [dblp:TPAMI](https://dblp.uni-trier.de/db/journals/pami/index.html)
+- [arXiv:Computer Vision and Pattern Recognition](https://arxiv.org/list/cs.CV/recent)
 
 # 膜拜大神
 - [Martin Danelljan](http://users.isy.liu.se/cvl/marda26/)-马丁大神
