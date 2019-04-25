@@ -26,6 +26,8 @@
 
 - **SRDCF**:Martin Danelljan, Gustav Häger, Fahad Khan, Michael Felsberg. "Learning Spatially Regularized Correlation Filters for Visual Tracking", ICCV (2015).[[paper]](https://www.cvl.isy.liu.se/research/objrec/visualtracking/regvistrack/SRDCF_ICCV15.pdf)[[project]](https://www.cvl.isy.liu.se/research/objrec/visualtracking/regvistrack/)
 
+- **DiMP**:Goutam Bhat, Martin Danelljan, Luc Van Gool, Radu Timofte. "Learning Discriminative Model Prediction for Tracking", [[paper]](https://arxiv.org/pdf/1904.07220.pdf)
+
 # Visual Tracker Benchmark && Datasets
 - **OTB2013**：Wu Yi, Jongwoo Lim, Ming-Hsuan Yang. "Online Object Tracking: A Benchmark", CVPR (2013). [[paper]](http://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf)
 
