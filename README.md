@@ -46,11 +46,11 @@
 - [arXiv:Computer Vision and Pattern Recognition](https://arxiv.org/list/cs.CV/recent)
 
 # 膜拜大神
-- [Martin Danelljan](http://users.isy.liu.se/cvl/marda26/)-马丁大神
+- [Martin Danelljan](https://martin-danelljan.github.io/)-马丁大神[[Previous website]](http://users.isy.liu.se/cvl/marda26/)
 - [Luca Bertinetto](http://www.robots.ox.ac.uk/~luca/)——[Luca Bertinetto's_GitHub](https://github.com/bertinetto)
 - [João F. Henriques](http://www.robots.ox.ac.uk/~joao/#)
 - [ Ming-Hsuan Yang](http://faculty.ucmerced.edu/mhyang/)
 - [HEscop](https://github.com/HEscop/TBCF)
-- [foolwood](https://github.com/foolwood/benchmark_results)
+- [Qiang Wang](https://github.com/foolwood/benchmark_results)
 - [小小菜鸟一只](https://blog.csdn.net/crazyice521/article/details/70238542)
 
