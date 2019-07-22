@@ -28,6 +28,8 @@
 
 - **DiMP**:Goutam Bhat, Martin Danelljan, Luc Van Gool, Radu Timofte. "Learning Discriminative Model Prediction for Tracking". [[paper]](https://arxiv.org/pdf/1904.07220.pdf)
 
+- **C-COT**: Martin Danelljan, Andreas Robinson, Fahad Khan, Michael Felsberg. "Beyond Correlation Filters: Learning Continuous Convolution Operators for Visual Tracking". ECCV (2016). [[paper]](http://www.cvl.isy.liu.se/research/objrec/visualtracking/conttrack/C-COT_ECCV16.pdf) [[project]](http://www.cvl.isy.liu.se/research/objrec/visualtracking/conttrack/index.html) [[github]](https://github.com/martin-danelljan/Continuous-ConvOp)
+
 # Visual Tracker Benchmark && Datasets
 - **OTB2013**：Wu Yi, Jongwoo Lim, Ming-Hsuan Yang. "Online Object Tracking: A Benchmark", CVPR (2013). [[paper]](http://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf)
 
