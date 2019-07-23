@@ -30,6 +30,8 @@
 
 - **C-COT**: Martin Danelljan, Andreas Robinson, Fahad Khan, Michael Felsberg. "Beyond Correlation Filters: Learning Continuous Convolution Operators for Visual Tracking". ECCV (2016). [[paper]](http://www.cvl.isy.liu.se/research/objrec/visualtracking/conttrack/C-COT_ECCV16.pdf) [[project]](http://www.cvl.isy.liu.se/research/objrec/visualtracking/conttrack/index.html) [[github]](https://github.com/martin-danelljan/Continuous-ConvOp)
 
+- **ECO**： Martin Danelljan, Goutam Bhat, Fahad Shahbaz Khan, Michael Felsberg. "ECO: Efficient Convolution Operators for Tracking". CVPR (2017). [[paper]](http://openaccess.thecvf.com/content_cvpr_2017/papers/Danelljan_ECO_Efficient_Convolution_CVPR_2017_paper.pdf) [[supp]](http://openaccess.thecvf.com/content_cvpr_2017/supplemental/Danelljan_ECO_Efficient_Convolution_2017_CVPR_supplemental.pdf) [[project]](http://www.cvl.isy.liu.se/research/objrec/visualtracking/ecotrack/index.html) [[github]](https://github.com/martin-danelljan/ECO)
+
 # Visual Tracker Benchmark && Datasets
 - **OTB2013**：Wu Yi, Jongwoo Lim, Ming-Hsuan Yang. "Online Object Tracking: A Benchmark", CVPR (2013). [[paper]](http://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf)
 
