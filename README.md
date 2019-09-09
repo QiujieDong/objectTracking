@@ -49,6 +49,12 @@
 - [dblp:TPAMI](https://dblp.uni-trier.de/db/journals/pami/index.html)
 - [arXiv:Computer Vision and Pattern Recognition](https://arxiv.org/list/cs.CV/recent)
 
+# My article
+- Qiujie Dong, Xuedong He, Haiyan Ge, Shengzong Zhou. Adaptive Merging Complementary Learners for Visual Tracking Based on Probabilistic Model[J]. Laser & Optoelectronics Progress, 2019, 56(16): 161505.[[paper]](http://www.opticsjournal.net/Articles/abstract?aid=OJ414c6582a88e2489)
+
+    董秋杰, 何雪东, 葛海燕, 周盛宗. 基于概率模型的自适应融合互补学习跟踪算法[J]. 激光与光电子学进展, 2019, 56(16): 161505
+    
+ - Qiujie Dong, Xuedong He, Haiyan Ge, Qin Liu, Aifu Han and Shengzong Zhou. 2019. Adaptive Model-updated Correlation Filters for Real-time Visual Tracking. In AIAM’ 19: 2019 International Conference on Artificial Intelligence and Advanced Manufacturing, October 17–19, 2019, Dublin, Ireland. ACM, New York, NY, USA, 7 pages.[[paper]](https://doi.org/10.1145/3358331.3358334)
 # 膜拜大神
 - [Martin Danelljan](https://martin-danelljan.github.io/)-马丁大神[[Previous website]](http://users.isy.liu.se/cvl/marda26/)
 - [Luca Bertinetto](http://www.robots.ox.ac.uk/~luca/)——[Luca Bertinetto's_GitHub](https://github.com/bertinetto)
