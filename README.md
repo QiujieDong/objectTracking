@@ -32,6 +32,14 @@
 
 - **ECO**： Martin Danelljan, Goutam Bhat, Fahad Shahbaz Khan, Michael Felsberg. "ECO: Efficient Convolution Operators for Tracking". CVPR (2017). [[paper]](http://openaccess.thecvf.com/content_cvpr_2017/papers/Danelljan_ECO_Efficient_Convolution_CVPR_2017_paper.pdf) [[supp]](http://openaccess.thecvf.com/content_cvpr_2017/supplemental/Danelljan_ECO_Efficient_Convolution_2017_CVPR_supplemental.pdf) [[project]](http://www.cvl.isy.liu.se/research/objrec/visualtracking/ecotrack/index.html) [[github]](https://github.com/martin-danelljan/ECO)
 
+- **SiameseFC**:Luca Bertinetto, Jack Valmadre, João F. Henriques, Andrea Vedaldi, Philip H.S. Torr. "Fully-Convolutional Siamese Networks for Object Tracking". ECCV workshop (2016).[[paper]](http://120.52.73.78/arxiv.org/pdf/1606.09549v2.pdf)[[project]](http://www.robots.ox.ac.uk/~luca/siamese-fc.html)[[github]](https://github.com/bertinetto/siamese-fc)
+
+- **SiamRPN**:Bo Li, Wei Wu, Zheng Zhu, Junjie Yan. "High Performance Visual Tracking with Siamese Region Proposal Network". CVPR (2018).[[paper]](http://openaccess.thecvf.com/content_cvpr_2018/papers/Li_High_Performance_Visual_CVPR_2018_paper.pdf) 
+
+- **SiamMask**:Qiang Wang, Li Zhang, Luca Bertinetto, Weiming Hu, Philip H.S. Torr. "Fast Online Object Tracking and Segmentation: A Unifying Approach". CVPR (2019). [[paper]](https://arxiv.org/pdf/1812.05050.pdf)[[project]](http://www.robots.ox.ac.uk/~qwang/SiamMask/)[[github]](https://github.com/foolwood/SiamMask)
+
+- **ATOM**: Martin Danelljan, Goutam Bhat, Fahad Shahbaz Khan, Michael Felsberg. "ATOM: Accurate Tracking by Overlap Maximization". CVPR (2019). [[paper]](http://openaccess.thecvf.com/content_CVPR_2019/papers/Danelljan_ATOM_Accurate_Tracking_by_Overlap_Maximization_CVPR_2019_paper.pdf) [[github]](https://github.com/visionml/pytracking)
+
 # Visual Tracker Benchmark && Datasets
 - **OTB2013**：Wu Yi, Jongwoo Lim, Ming-Hsuan Yang. "Online Object Tracking: A Benchmark", CVPR (2013). [[paper]](http://faculty.ucmerced.edu/mhyang/papers/cvpr13_benchmark.pdf)
 
