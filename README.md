@@ -63,6 +63,9 @@
     董秋杰, 何雪东, 葛海燕, 周盛宗. 基于概率模型的自适应融合互补学习跟踪算法[J]. 激光与光电子学进展, 2019, 56(16): 161505
     
  - Qiujie Dong, Xuedong He, Haiyan Ge, Qin Liu, Aifu Han and Shengzong Zhou. 2019. Adaptive Model-updated Correlation Filters for Real-time Visual Tracking. In AIAM’ 19: 2019 International Conference on Artificial Intelligence and Advanced Manufacturing, October 17–19, 2019, Dublin, Ireland. ACM, New York, NY, USA, 7 pages.[[paper]](https://www.engineeringvillage.com/search/doc/abstract.url?&pageType=quickSearch&usageZone=resultslist&usageOrigin=searchresults&searchtype=Quick&SEARCHID=49fae109d388412abf0730dfdf7a22bb&DOCINDEX=1&ignore_docid=cpx_5cc2ce7c16ecc53c1a2M6b4210178163211&database=8193&format=quickSearchAbstractFormat&tagscope=&displayPagination=yes)
+
+- Qiujie Dong, Xuedong He, Haiyan Ge, Qin Liu, Yanting Liu, Ajuan Li, Yuren Zhang, Aifu Han, Shengzong Zhou. "Adopting Feature-Weighted and Scale Adaptive for Real-Time Visual Tracking". IEEE.[[paper]](https://ieeexplore.ieee.org/document/8950923)
+
 # 膜拜大神
 - [Martin Danelljan](https://martin-danelljan.github.io/)-马丁大神[[Previous website]](http://users.isy.liu.se/cvl/marda26/)
 - [Luca Bertinetto](http://www.robots.ox.ac.uk/~luca/)——[Luca Bertinetto's_GitHub](https://github.com/bertinetto)
