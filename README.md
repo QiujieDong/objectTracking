@@ -66,6 +66,8 @@
 
 - Qiujie Dong, Xuedong He, Haiyan Ge, Qin Liu, Yanting Liu, Ajuan Li, Yuren Zhang, Aifu Han, Shengzong Zhou. "Adopting Feature-Weighted and Scale Adaptive for Real-Time Visual Tracking". IEEE.[[paper]](https://www.engineeringvillage.com/search/doc/abstract.url?&pageType=quickSearch&usageZone=resultslist&usageOrigin=searchresults&searchtype=Quick&SEARCHID=8b7398679e544ff39ee04069c0d5587d&DOCINDEX=1&ignore_docid=cpx_M7ba0a706172513b3723M6bc410178163190&database=8193&format=quickSearchAbstractFormat&tagscope=&displayPagination=yes)
 
+- Qiujie Dong, Xuedong He, Haiyan Ge, Qin Liu, Aifu Han, Shengzong Zhou. "Improving model drift for robust object tracking". Multimedia Tools and Applications volume 79, pages25801–25815(2020)[[paper]](https://link.springer.com/article/10.1007/s11042-020-09032-z)
+
 # 膜拜大神
 - [Martin Danelljan](https://martin-danelljan.github.io/)-马丁大神[[Previous website]](http://users.isy.liu.se/cvl/marda26/)
 - [Luca Bertinetto](http://www.robots.ox.ac.uk/~luca/)——[Luca Bertinetto's_GitHub](https://github.com/bertinetto)
